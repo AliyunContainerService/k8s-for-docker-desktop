@@ -1,16 +1,15 @@
 # Enable Kubernetes on Docker for Desktop in China
 
-NOTE: It is tested on Docker for Mac 18.02/18.03
+NOTE: 
+
+* The master branch is tested with Docker for Mac/Windows 18.04. If you want to use Docker for Mac/Windows 18.02/18.03, please use the 18.03 branch ```git checkout 18.03```
+* If you run on Windows, please execute following commands in Bash shell
 
 Install Docker for Mac or Windows
 
 Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
 
-
-
 ![mirror](./mirror.jpg)
-
-
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
@@ -48,6 +47,12 @@ or
 
 ```
 kubectl create -f kubernetes-dashboard.yaml
+```
+
+Start proxy for API server
+
+```
+kubectl proxy
 ```
 
 Access dashboard
