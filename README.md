@@ -2,7 +2,7 @@
 
 NOTE: 
 
-* The master branch is tested with Docker for Mac/Windows 18.06 (with Kubernetes 1.10.3). If you want to use Docker for Mac/Windows 18.03, please use the 18.03 branch ```git checkout 18.03```
+* The master branch is tested with Docker for Mac/Windows 18.09/18.06 (with Kubernetes 1.10.3). If you want to use Docker for Mac/Windows 18.03, please use the 18.03 branch ```git checkout 18.03```
 * If you run on Windows, please execute following commands in Bash shell
 
 ### Enable Kubernetes on Docker for Mac or Windows
