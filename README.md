@@ -1,4 +1,4 @@
-# Enable Kubernetes on Docker for Desktop in China
+# Enable Kubernetes on Docker for Mac/Windows in China
 
 NOTE: 
 
@@ -19,7 +19,7 @@ In Bash shell
 ./load_images.sh
 ```
 
-or in Power Shell of Windows
+or in PowerShell of Windows
 
 ```
  .\load_images.ps1
