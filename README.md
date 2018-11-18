@@ -1,26 +1,29 @@
-# Enable Kubernetes on Docker for Mac/Windows in China
+# 为中国用户在 Docker for Mac/Windows 中开启 Kubernetes 
 
-NOTE: 
+中文|[English](README_en.md)
 
-* The master branch is tested with Docker for Mac/Windows 18.09/18.06 (with Kubernetes 1.10.3). If you want to use 18.03, please use the 18.03 branch ```git checkout 18.03```
+说明: 
 
-### Enable Kubernetes on Docker for Mac
+* 当前 master 分支已经在 Docker for Mac/Windows 18.09/18.06 (包含 Kubernetes 1.10.3) 版本测试通过，如果你希望使用 18.03 版本, 请使用下面命令切换 18.03 分支 ```git checkout 18.03```
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
+### 为 Docker for Mac 开启 Kubernetes
+
+为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
 ![mirror](images/mirror.png)
 
-Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
+可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。 
 
 ![resource](images/resource.png)
 
-Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
+预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
+
 
 ```
 ./load_images.sh
 ```
 
-Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
+开启 Kubernetes，并等待 Kubernetes 开始运行
 
 
 ![k8s](images/k8s.png)
@@ -28,132 +31,140 @@ Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
 
 ### Enable Kubernetes on Docker for Windows
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
+为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
 ![mirror](images/mirror_win.png)
 
-Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
+可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。 
 
 ![resource](images/resource_win.png)
 
-Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
+预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
 
-In Bash shell
+使用 Bash shell
 
 ```
 ./load_images.sh
 ```
 
-or in PowerShell of Windows
+使用 PowerShell
 
 ```
  .\load_images.ps1
 ```
 
-NOTE: if you failed to start PowerShell scripts for security policy, please execute ```Set-ExecutionPolicy RemoteSigned``` command in PowerShell with "Run as administrator" option. 
+说明: 如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 ```Set-ExecutionPolicy RemoteSigned``` 命令。 
 
-Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is running
+开启 Kubernetes，并等待 Kubernetes 开始运行
 
 ![k8s](images/k8s_win.png)
 
 
-### Config Kubernetes
+### 配置 Kubernetes
 
 
-Optional: switch the context to docker-for-desktop
+可选操作: 切换Kubernetes运行上下文至 docker-for-desktop
+
 
 ```
 kubectl config use-context docker-for-desktop
 ```
 
-Verify Kubernetes installation
+验证 Kubernetes 集群状态
 
 ```
 kubectl cluster-info
 kubectl get nodes
 ```
 
-Deploy Kubernetes dashboard
-
+部署 Kubernetes dashboard
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
-or
+或
 
 ```
 kubectl create -f kubernetes-dashboard.yaml
 ```
 
-Start proxy for API server
+开启 API Server 访问代理
 
 ```
 kubectl proxy
 ```
 
-Access dashboard
+通过如下 URL 访问 Kubernetes dashboard
 
-```
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
-```
 
-### Install Helm
+### 安装 Helm
 
-Install helm client following the instruction on https://github.com/helm/helm/blob/master/docs/install.md
+可以根据文档安装 helm https://github.com/helm/helm/blob/master/docs/install.md
 
 ```
 # Use homebrew on Mac
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.9.1
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0
 
 # update charts repo
 helm repo update
 ```
 
-### Install Istio
+### 安装 Istio
 
-More details can be found in https://istio.io/docs/setup/kubernetes/
+可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.0.0 and install CLI
+下载 Istio 1.0.3 并安装 CLI
 
 ```
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.0/
+cd istio-1.0.3/
 export PATH=$PWD/bin:$PATH
 ```
 
-Install Istio with Helm chart
+通过 Helm chart 安装 Istio
 
 ```
-kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+```
+
+查看 istio 发布状态
+
+```
 helm status istio
 ```
 
-Enable automatic sidecar injection for ```default``` namespace
+为 ```default``` 名空间开启自动 sidecar 注入
 
 ```
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
-Install Book Info sample
+安装 Book Info 示例
 
 ```
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
 
-# confirm application is running
+
+确认示例应用在运行中
+
+```
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
 
-Delete Istio
+卸载 Istio
 
 ```
 helm del --purge istio
+kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
 ```
 
 
