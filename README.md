@@ -2,14 +2,35 @@
 
 NOTE: 
 
-* The master branch is tested with Docker for Mac/Windows 18.09/18.06 (with Kubernetes 1.10.3). If you want to use Docker for Mac/Windows 18.03, please use the 18.03 branch ```git checkout 18.03```
-* If you run on Windows, please execute following commands in Bash shell or PowerShell
+* The master branch is tested with Docker for Mac/Windows 18.09/18.06 (with Kubernetes 1.10.3). If you want to use 18.03, please use the 18.03 branch ```git checkout 18.03```
 
-### Enable Kubernetes on Docker for Mac/Windows
+### Enable Kubernetes on Docker for Mac
 
 Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
 
-![mirror](./mirror.jpg)
+![mirror](images/mirror.jpg)
+
+Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
+
+```
+./load_images.sh
+```
+
+Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
+
+
+![k8s](images/k8s.jpg)
+
+
+### Enable Kubernetes on Docker for Windows
+
+Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
+
+![mirror](images/daemon.png)
+
+Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
+
+![resource](images/resource_win.png)
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
@@ -27,10 +48,13 @@ or in PowerShell of Windows
 
 NOTE: if you failed to start PowerShell scripts for security policy, please execute ```Set-ExecutionPolicy RemoteSigned``` command in PowerShell with "Run as administrator" option. 
 
-Enable Kubernetes in Docker for Mac/Windows, and wait a while for Kubernetes is running
+Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is running
+
+![k8s](images/k8s_win.png)
 
 
-![k8s](./k8s.jpg)
+### Config Kubernetes
+
 
 Optional: switch the context to docker-for-desktop
 
