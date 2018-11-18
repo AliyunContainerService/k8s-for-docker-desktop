@@ -8,7 +8,11 @@ NOTE:
 
 Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
 
-![mirror](images/mirror.jpg)
+![mirror](images/mirror.png)
+
+Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
+
+![resource](images/resource.png)
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
@@ -19,14 +23,14 @@ Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can mod
 Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
 
 
-![k8s](images/k8s.jpg)
+![k8s](images/k8s.png)
 
 
 ### Enable Kubernetes on Docker for Windows
 
 Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
 
-![mirror](images/daemon.png)
+![mirror](images/mirror_win.png)
 
 Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
 
