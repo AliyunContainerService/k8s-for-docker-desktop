@@ -103,16 +103,32 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 
 可以根据文档安装 helm https://github.com/helm/helm/blob/master/docs/install.md
 
+在 Mac OS 上执行如下命令
+
 ```
 # Use homebrew on Mac
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0 --skip-refresh
 
-# update charts repo
+# update charts repo (Optional)
 helm repo update
 ```
+
+在Windows上执行如下命令
+
+```
+# Use Chocolatey on Windows
+choco install kubernetes-helm
+
+# Install Tiller into your Kubernetes cluster
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0 --skip-refresh
+
+# update charts repo (Optional)
+helm repo update
+```
+
 
 ### 安装 Istio
 
@@ -125,6 +141,14 @@ curl -L https://git.io/getLatestIstio | sh -
 cd istio-1.0.3/
 export PATH=$PWD/bin:$PATH
 ```
+
+在Windows上，您可以手工下载Istio安装包，或者把```getLatestIstio.ps1```拷贝到你希望下载 Istio 的目录，并执行 - 说明：根据社区提供的[安装脚本](https://gist.github.com/kameshsampath/796060a806da15b39aa9569c8f8e6bcf)修改而来
+
+```
+.\getLatestIstio.ps1
+```
+
+
 
 通过 Helm chart 安装 Istio
 
@@ -159,6 +183,10 @@ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
+
+可以通过浏览器访问
+
+http://localhost/productpage
 
 卸载 Istio
 
