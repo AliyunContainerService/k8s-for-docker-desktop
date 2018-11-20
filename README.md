@@ -100,18 +100,18 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-### 安装 Ingress
+### 配置 Ingress
 
 说明：如果测试 Istio，不需要安装 Ingress
 
-#### 安装
+#### 安装 Ingress
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
 ```
 
-#### 验证
+验证
 
 ```
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
@@ -146,7 +146,7 @@ kubectl delete -f sample/banana.yaml
 kubectl delete -f sample/ingress.yaml
 ```
 
-#### 删除Ingress
+#### 删除 Ingress
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
@@ -184,7 +184,7 @@ helm repo update
 ```
 
 
-### 安装 Istio
+### 配置 Istio
 
 说明：Istio Ingress Gateway和Ingress缺省的端口冲突，请移除Ingress并进行下面测试
 
