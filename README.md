@@ -4,9 +4,10 @@
 
 说明: 
 
+* 需安装 Docker for Mac或者Docker for Windows，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
 * 当前 master 分支已经在 Docker for Mac/Windows 18.09/18.06 (包含 Kubernetes 1.10.3) 版本测试通过，如果你希望使用 18.03 版本, 请使用下面命令切换 18.03 分支 ```git checkout 18.03```
 
-### 为 Docker for Mac 开启 Kubernetes
+### Docker for Mac 开启 Kubernetes
 
 为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
@@ -29,7 +30,7 @@
 ![k8s](images/k8s.png)
 
 
-### Enable Kubernetes on Docker for Windows
+### Docker for Windows 开启 Kubernetes
 
 为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
@@ -99,11 +100,64 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
+### 安装 Ingress
+
+说明：如果测试 Istio，不需要安装 Ingress
+
+#### 安装
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
+```
+
+#### 验证
+
+```
+kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+```
+
+#### 测试示例应用
+
+
+部署测试应用，详情参见[社区文章](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html)
+
+
+```
+kubectl create -f sample/apple.yaml
+kubectl create -f sample/banana.yaml
+kubectl create -f sample/ingress.yaml
+```
+
+测试示例应用
+
+```
+$ curl -kL http://localhost/apple
+apple
+$ curl -kL http://localhost/banana
+banana
+```
+
+删除示例应用
+
+```
+kubectl delete -f sample/apple.yaml
+kubectl delete -f sample/banana.yaml
+kubectl delete -f sample/ingress.yaml
+```
+
+#### 删除Ingress
+
+```
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+```
+
 ### 安装 Helm
 
 可以根据文档安装 helm https://github.com/helm/helm/blob/master/docs/install.md
 
-在 Mac OS 上执行如下命令
+#### 在 Mac OS 上安装
 
 ```
 # Use homebrew on Mac
@@ -116,7 +170,7 @@ helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tille
 helm repo update
 ```
 
-在Windows上执行如下命令
+#### 在Windows上安装
 
 ```
 # Use Chocolatey on Windows
@@ -132,9 +186,11 @@ helm repo update
 
 ### 安装 Istio
 
+说明：Istio Ingress Gateway和Ingress缺省的端口冲突，请移除Ingress并进行下面测试
+
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-下载 Istio 1.0.3 并安装 CLI
+#### 下载 Istio 1.0.3 并安装 CLI
 
 ```
 curl -L https://git.io/getLatestIstio | sh -
@@ -150,26 +206,26 @@ export PATH=$PWD/bin:$PATH
 
 
 
-通过 Helm chart 安装 Istio
+#### 通过 Helm chart 安装 Istio
 
 ```
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
-查看 istio 发布状态
+#### 查看 istio 发布状态
 
 ```
 helm status istio
 ```
 
-为 ```default``` 名空间开启自动 sidecar 注入
+#### 为 ```default``` 名空间开启自动 sidecar 注入
 
 ```
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
-安装 Book Info 示例
+#### 安装 Book Info 示例
 
 ```
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
@@ -188,7 +244,32 @@ curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 
 http://localhost/productpage
 
-卸载 Istio
+
+说明：如果当前80端口已经被占用或保留，我们可以编辑 ```install/kubernetes/helm/istio/values.yaml``` 文件中
+Gateway 端口进行调整，比如将 80 端口替换为 8888 端口
+
+```
+      ## You can add custom gateway ports
+    - port: 8888  # Changed from 80
+      targetPort: 80
+      name: http2
+      nodePort: 31380
+```
+
+然后执行如下命令并生效
+
+```
+kubectl delete service istio-ingressgateway -n istio-system
+helm upgrade istio install/kubernetes/helm/istio
+```
+
+#### 删除实例应用
+
+```
+samples/bookinfo/platform/kube/cleanup.sh
+```
+
+### 卸载 Istio
 
 ```
 helm del --purge istio
