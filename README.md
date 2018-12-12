@@ -190,11 +190,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.0.3 并安装 CLI
+#### 下载 Istio 1.0.4 并安装 CLI
 
 ```
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.3/
+cd istio-1.0.4/
 export PATH=$PWD/bin:$PATH
 ```
 
