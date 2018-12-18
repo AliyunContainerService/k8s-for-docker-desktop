@@ -18,7 +18,8 @@ Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
-```
+
+```bash
 ./load_images.sh
 ```
 
@@ -42,13 +43,13 @@ Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can mod
 
 In Bash shell
 
-```
+```bash
 ./load_images.sh
 ```
 
 or in PowerShell of Windows
 
-```
+```powershell
  .\load_images.ps1
 ```
 
@@ -64,52 +65,70 @@ Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is runn
 
 Optional: switch the context to docker-for-desktop
 
-```
+
+```shell
 kubectl config use-context docker-for-desktop
 ```
 
 Verify Kubernetes installation
 
-```
+```shell
 kubectl cluster-info
 kubectl get nodes
 ```
 
 Deploy Kubernetes dashboard
 
-
-```
+```shell
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 or
 
-```
+```shell
 kubectl create -f kubernetes-dashboard.yaml
 ```
 
 Start proxy for API server
 
-```
+```shell
 kubectl proxy
 ```
 
-Access dashboard
+Access Kubernetes dashboard
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+
+#### Config kubeconfig
+
+![resource](images/k8s_credentials.png)
+
+```bash
+$ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+```
+
+#### Choose kubeconfig file
+
+![resource](images/k8s_credentials.png)
+
+Choose kubeconfig file, Path：
+Win: %UserProfile%\.kube\config
+Mac: $HOME/.kube/config
+Click login, go to Kubernetes Dashboard
 
 ### Install Helm
 
 Install helm following the instruction on https://github.com/helm/helm/blob/master/docs/install.md
 
-```
+```shell
 # Use homebrew on Mac
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0 --skip-refresh
 
-# update charts repo
+# update charts repo (Optional)
 helm repo update
 ```
 
@@ -117,50 +136,50 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.0.3 and install CLI
+Download Istio 1.0.4 and install CLI
 
-```
+```bash
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.3/
+cd istio-1.0.4/
 export PATH=$PWD/bin:$PATH
 ```
 
 Install Istio with Helm chart
 
-```
+```shell
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
 Check status of istio release
 
-```
+```shell
 helm status istio
 ```
 
 Enable automatic sidecar injection for ```default``` namespace
 
-```
+```shell
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
 Install Book Info sample
 
-```
+```shell
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 
 
 Confirm application is running
 
-```
+```bash
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
 
 Delete Istio
 
-```
+```shell
 helm del --purge istio
 kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
 ```

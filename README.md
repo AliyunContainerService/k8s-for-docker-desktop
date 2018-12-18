@@ -20,7 +20,7 @@
 预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
 
 
-```
+```bash
 ./load_images.sh
 ```
 
@@ -44,13 +44,13 @@
 
 使用 Bash shell
 
-```
+```bash
 ./load_images.sh
 ```
 
 使用 PowerShell
 
-```
+```powershell
  .\load_images.ps1
 ```
 
@@ -67,32 +67,32 @@
 可选操作: 切换Kubernetes运行上下文至 docker-for-desktop
 
 
-```
+```shell
 kubectl config use-context docker-for-desktop
 ```
 
 验证 Kubernetes 集群状态
 
-```
+```shell
 kubectl cluster-info
 kubectl get nodes
 ```
 
 部署 Kubernetes dashboard
 
-```
+```shell
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 或
 
-```
+```shell
 kubectl create -f kubernetes-dashboard.yaml
 ```
 
 开启 API Server 访问代理
 
-```
+```shell
 kubectl proxy
 ```
 
@@ -100,20 +100,36 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
+### 配置 kubeconfig
+
+```bash
+$ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+```
+
+#### 选择 kubeconfig 文件
+
+![resource](images/k8s_credentials.png)
+
+选择 kubeconfig 文件,路径如下：
+Win: %UserProfile%\.kube\config
+Mac: $HOME/.kube/config
+点击登陆，进入Kubernetes Dashboard
+
 ### 配置 Ingress
 
 说明：如果测试 Istio，不需要安装 Ingress
 
 #### 安装 Ingress
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
 ```
 
 验证
 
-```
+```shell
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
 ```
 
@@ -123,7 +139,7 @@ kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
 部署测试应用，详情参见[社区文章](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html)
 
 
-```
+```shell
 kubectl create -f sample/apple.yaml
 kubectl create -f sample/banana.yaml
 kubectl create -f sample/ingress.yaml
@@ -131,7 +147,7 @@ kubectl create -f sample/ingress.yaml
 
 测试示例应用
 
-```
+```bash
 $ curl -kL http://localhost/apple
 apple
 $ curl -kL http://localhost/banana
@@ -140,7 +156,7 @@ banana
 
 删除示例应用
 
-```
+```shell
 kubectl delete -f sample/apple.yaml
 kubectl delete -f sample/banana.yaml
 kubectl delete -f sample/ingress.yaml
@@ -148,7 +164,7 @@ kubectl delete -f sample/ingress.yaml
 
 #### 删除 Ingress
 
-```
+```shell
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
 ```
@@ -159,7 +175,7 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mas
 
 #### 在 Mac OS 上安装
 
-```
+```shell
 # Use homebrew on Mac
 brew install kubernetes-helm
 
@@ -172,7 +188,7 @@ helm repo update
 
 #### 在Windows上安装
 
-```
+```shell
 # Use Chocolatey on Windows
 choco install kubernetes-helm
 
@@ -192,7 +208,7 @@ helm repo update
 
 #### 下载 Istio 1.0.4 并安装 CLI
 
-```
+```bash
 curl -L https://git.io/getLatestIstio | sh -
 cd istio-1.0.4/
 export PATH=$PWD/bin:$PATH
@@ -200,7 +216,7 @@ export PATH=$PWD/bin:$PATH
 
 在Windows上，您可以手工下载Istio安装包，或者把```getLatestIstio.ps1```拷贝到你希望下载 Istio 的目录，并执行 - 说明：根据社区提供的[安装脚本](https://gist.github.com/kameshsampath/796060a806da15b39aa9569c8f8e6bcf)修改而来
 
-```
+```powershell
 .\getLatestIstio.ps1
 ```
 
@@ -208,26 +224,26 @@ export PATH=$PWD/bin:$PATH
 
 #### 通过 Helm chart 安装 Istio
 
-```
+```shell
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
 #### 查看 istio 发布状态
 
-```
+```shell
 helm status istio
 ```
 
 #### 为 ```default``` 名空间开启自动 sidecar 注入
 
-```
+```shell
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
 #### 安装 Book Info 示例
 
-```
+```shell
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 ```
@@ -235,7 +251,7 @@ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 
 确认示例应用在运行中
 
-```
+```bash
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
@@ -258,20 +274,20 @@ Gateway 端口进行调整，比如将 80 端口替换为 8888 端口
 
 然后执行如下命令并生效
 
-```
+```shell
 kubectl delete service istio-ingressgateway -n istio-system
 helm upgrade istio install/kubernetes/helm/istio
 ```
 
 #### 删除实例应用
 
-```
+```bash
 samples/bookinfo/platform/kube/cleanup.sh
 ```
 
 ### 卸载 Istio
 
-```
+```shell
 helm del --purge istio
 kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
 ```
