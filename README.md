@@ -112,8 +112,12 @@ kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ![resource](images/k8s_credentials.png)
 
 选择 kubeconfig 文件,路径如下：
+
+```
 Win: %UserProfile%\.kube\config
 Mac: $HOME/.kube/config
+```
+
 点击登陆，进入Kubernetes Dashboard
 
 ### 配置 Ingress

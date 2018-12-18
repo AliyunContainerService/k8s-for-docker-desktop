@@ -113,8 +113,12 @@ kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ![resource](images/k8s_credentials.png)
 
 Choose kubeconfig file, Path：
+
+```
 Win: %UserProfile%\.kube\config
 Mac: $HOME/.kube/config
+```
+
 Click login, go to Kubernetes Dashboard
 
 ### Install Helm
