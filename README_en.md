@@ -108,7 +108,7 @@ $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{prin
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
-#### Choose kubeconfig file
+#### Choose kubeconfig file (Optional)
 
 ![resource](images/k8s_credentials.png)
 

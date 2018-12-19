@@ -100,7 +100,7 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-### 配置 kubeconfig
+### 配置 kubeconfig (可选)
 
 ```bash
 $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
