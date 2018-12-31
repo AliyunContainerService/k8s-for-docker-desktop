@@ -108,6 +108,20 @@ $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{prin
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
+For Windows
+First get value of dashboard-admin-token with below command:
+
+```cmd
+kubectl describe secret -n kube-system dashboard-admin-token
+```
+
+copy this value and run below command to setup kubeconfig
+
+```cmd
+$TOKEN="YOUR_TOKEN_COPY_FROM_ABOVE"
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+```
+
 #### Choose kubeconfig file (Optional)
 
 ![resource](images/k8s_credentials.png)
@@ -125,9 +139,25 @@ Click login, go to Kubernetes Dashboard
 
 Install helm following the instruction on https://github.com/helm/helm/blob/master/docs/install.md
 
+#### For Mac OS
+
 ```shell
 # Use homebrew on Mac
 brew install kubernetes-helm
+
+# Install Tiller into your Kubernetes cluster
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0 --skip-refresh
+
+# update charts repo (Optional)
+helm repo update
+```
+
+#### For Windows
+
+```shell
+# Use Chocolatey on Windows
+# NOTE: please ensure you can access googleapis
+choco install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
 helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.11.0 --skip-refresh

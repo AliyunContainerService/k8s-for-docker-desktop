@@ -107,7 +107,21 @@ $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{prin
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
-#### 选择 kubeconfig 文件
+对于Windows
+首先执行如下命令得到dashboard-admin-token的token值
+
+```cmd
+kubectl describe secret -n kube-system dashboard-admin-token
+```
+
+复制token值， 执行如下命令设置kubeconfig
+
+```cmd
+$TOKEN="YOUR_TOKEN_COPY_FROM_ABOVE"
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+```
+
+#### 登录dashboard的时候选择 kubeconfig 文件
 
 ![resource](images/k8s_credentials.png)
 
@@ -194,6 +208,7 @@ helm repo update
 
 ```shell
 # Use Chocolatey on Windows
+# 注：安装的时候需要保证网络能够访问googleapis这个域名
 choco install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
