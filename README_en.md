@@ -101,8 +101,6 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 
 #### Config kubeconfig (Or skip)
 
-![resource](images/k8s_credentials.png)
-
 For Mac
 
 ```bash
