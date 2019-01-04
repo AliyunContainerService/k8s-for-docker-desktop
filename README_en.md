@@ -99,9 +99,11 @@ Access Kubernetes dashboard
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-#### Config kubeconfig
+#### Config kubeconfig (Or skip)
 
 ![resource](images/k8s_credentials.png)
+
+For Mac
 
 ```bash
 $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
@@ -109,16 +111,9 @@ kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
 For Windows
-First get value of dashboard-admin-token with below command:
 
 ```cmd
-kubectl describe secret -n kube-system dashboard-admin-token
-```
-
-copy this value and run below command to setup kubeconfig
-
-```cmd
-$TOKEN="YOUR_TOKEN_COPY_FROM_ABOVE"
+$TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
