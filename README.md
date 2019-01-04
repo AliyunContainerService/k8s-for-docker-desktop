@@ -100,24 +100,20 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-### 配置 kubeconfig (可选)
+### 配置 kubeconfig (可跳过)
 
-```bash
+
+对于Mac环境
+
+```shell
 $ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
-对于Windows
-首先执行如下命令得到dashboard-admin-token的token值
+对于Windows环境
 
-```cmd
-kubectl describe secret -n kube-system dashboard-admin-token
-```
-
-复制token值， 执行如下命令设置kubeconfig
-
-```cmd
-$TOKEN="YOUR_TOKEN_COPY_FROM_ABOVE"
+```shell
+$TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
@@ -128,8 +124,8 @@ kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 选择 kubeconfig 文件,路径如下：
 
 ```
-Win: %UserProfile%\.kube\config
 Mac: $HOME/.kube/config
+Win: %UserProfile%\.kube\config
 ```
 
 点击登陆，进入Kubernetes Dashboard
