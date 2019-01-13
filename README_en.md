@@ -1,10 +1,12 @@
 # Enable Kubernetes on Docker for Mac/Windows in China
 
-[中文](README.md)|English
+[中文](README.md) | English
 
 NOTE: 
 
-* The master branch is tested with Docker for Mac/Windows 18.09/18.06 (with Kubernetes 1.10.3). If you want to use 18.03, please use the 18.03 branch ```git checkout 18.03```
+* The master branch is tested with Docker for Mac/Windows 18.09.1 (with Kubernetes 1.13.0). 
+  * If you want to use 18.09/18.06 (with Kubernetes 1.10.3), please use the 18.09 branch ```git checkout 18.09
+  * If you want to use 18.03, please use the 18.03 branch ```git checkout 18.03```
 
 ### Enable Kubernetes on Docker for Mac
 
@@ -199,7 +201,7 @@ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 
 Confirm application is running
 
-```bash
+​```bash
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
