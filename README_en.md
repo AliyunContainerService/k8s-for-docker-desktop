@@ -4,8 +4,8 @@
 
 NOTE: 
 
-* The master branch is tested with Docker for Mac/Windows version 2.0.1.0 (with Docker 18.09.1 and Kubernetes 1.13.0). 
-  * If you want to use v2.0.0.2 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the 18.09 branch ```git checkout v2.0.0.2```
+* The master branch is tested with Docker for Mac/Windows version 2.0.1.x (with Docker 18.09.1 and Kubernetes 1.13.0). 
+  * If you want to use v2.0.0.2/v2.0.0.3 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the 18.09 branch ```git checkout v2.0.0.2```
   * If you want to use Docker CE 18.09/18.06 (with Kubernetes 1.10.3), please use the 18.09 branch ```git checkout 18.09```
   * If you want to use Docker CE 18.03, please use the 18.03 branch ```git checkout 18.03```
 
@@ -107,7 +107,7 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 For Mac
 
 ```bash
-$ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
