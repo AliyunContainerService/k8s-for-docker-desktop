@@ -67,7 +67,7 @@
 ### 配置 Kubernetes
 
 
-可选操作: 切换Kubernetes运行上下文至 docker-for-desktop
+可选操作: 切换Kubernetes运行上下文至 docker-for-desktop (docker-ce 18.09 下 context 为 docker-desktop)
 
 
 ```shell
@@ -224,11 +224,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.0.4 并安装 CLI
+#### 下载 Istio 1.1.1 并安装 CLI
 
 ```bash
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.4/
+cd istio-1.1.1/
 export PATH=$PWD/bin:$PATH
 ```
 
@@ -243,6 +243,13 @@ export PATH=$PWD/bin:$PATH
 #### 通过 Helm chart 安装 Istio
 
 ```shell
+# 安装 istio-init chart 安装所有的 Istio CRD
+helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+
+# 验证下安装的 Istio CRD 个数
+kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
+
+# 开始 istio chart 安装
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 

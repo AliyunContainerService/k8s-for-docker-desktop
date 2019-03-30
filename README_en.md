@@ -11,7 +11,7 @@ NOTE:
 
 ### Enable Kubernetes on Docker for Mac
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
+Config registry mirror for Docker daemon with ```https://registry.docker-cn.com``` only if in China
 
 ![mirror](images/mirror.png)
 
@@ -66,7 +66,7 @@ Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is runn
 ### Config Kubernetes
 
 
-Optional: switch the context to docker-for-desktop
+Optional: switch the context to `docker-for-desktop` (under docker ce 18.09, the conext is `docker-desktop`)
 
 
 ```shell
@@ -166,17 +166,24 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.0.4 and install CLI
+Download Istio 1.1.1 and install CLI
 
 ```bash
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.4/
+cd istio-1.1.1/
 export PATH=$PWD/bin:$PATH
 ```
 
 Install Istio with Helm chart
 
 ```shell
+# Install the istio-init chart to bootstrap all the Istio’s CRDs
+helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+
+# Verify that all Istio CRDs were committed to the Kubernetes api-server
+kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
+
+# Install the istio chart
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
