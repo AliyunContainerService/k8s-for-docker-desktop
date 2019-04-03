@@ -63,6 +63,15 @@
 
 ![k8s](images/k8s_win.png)
 
+**TIPS**：如果想知道Kubernetes部署的过程，可以通过docker desktop应用日志获得实时安装进程信息：
+
+```bash
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
+```
+
+
 
 ### 配置 Kubernetes
 
