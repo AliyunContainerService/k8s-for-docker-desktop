@@ -199,8 +199,6 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mas
 
 可以根据文档安装 helm https://github.com/helm/helm/blob/master/docs/install.md
 
-#### 替换 helm 源
-
 #### 在 Mac OS 上安装
 
 ##### 通过 brew 安装
