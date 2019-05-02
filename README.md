@@ -70,11 +70,20 @@
 
 ![k8s](images/k8s_win.png)
 
+**TIPS**：如果想知道Kubernetes部署的过程，可以通过docker desktop应用日志获得实时安装进程信息：
+
+```bash
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
+```
+
+
 
 ### 配置 Kubernetes
 
 
-可选操作: 切换Kubernetes运行上下文至 docker-for-desktop
+可选操作: 切换Kubernetes运行上下文至 docker-for-desktop (docker-ce 18.09 下 context 为 docker-desktop)
 
 
 ```shell
@@ -199,28 +208,61 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mas
 
 #### 在 Mac OS 上安装
 
+##### 通过 brew 安装
+
+brew 安装的版本可能会和 helm server 不兼容, 如果在后续使用 helm 安装组件的过程中出现以下错误，可以 `通过二进制包安装` 对应的版本
+
+```
+$ helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+Error: incompatible versions client[v2.13.1] server[v2.12.2]
+```
+
 ```shell
 # Use homebrew on Mac
 brew install kubernetes-helm
 
+# Change helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
+
 # Install Tiller into your Kubernetes cluster
 helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
 
-# update charts repo (Optional)
+# Update charts repo (Optional)
 helm repo update
 ```
 
+##### 通过二进制包安装
+
+```
+# Download binary release
+在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.2-darwin-amd64.tar.gz
+
+# Unpack
+
+tar -zxvf helm-v2.0.0-linux-amd64.tgz
+
+# Move it to its desired destination
+
+mv darwin-amd64/helm /usr/local/bin/helm
+
+```
+
 #### 在Windows上安装
+
+如果在后续使用 helm 安装组件的过程中出现版本兼容问题，可以参考 `通过二进制包安装` 思路安装匹配的版本
 
 ```shell
 # Use Chocolatey on Windows
 # 注：安装的时候需要保证网络能够访问googleapis这个域名
 choco install kubernetes-helm
 
+# Change helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
+
 # Install Tiller into your Kubernetes cluster
 helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
 
-# update charts repo (Optional)
+# Update charts repo (Optional)
 helm repo update
 ```
 
@@ -231,11 +273,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.0.4 并安装 CLI
+#### 下载 Istio 1.1.1 并安装 CLI
 
 ```bash
 curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.0.4/
+cd istio-1.1.1/
 export PATH=$PWD/bin:$PATH
 ```
 
@@ -250,6 +292,13 @@ export PATH=$PWD/bin:$PATH
 #### 通过 Helm chart 安装 Istio
 
 ```shell
+# 安装 istio-init chart 安装所有的 Istio CRD
+helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+
+# 验证下安装的 Istio CRD 个数
+kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
+
+# 开始 istio chart 安装
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 ```
 
