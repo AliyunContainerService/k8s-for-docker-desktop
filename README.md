@@ -39,6 +39,13 @@
 
 ![k8s](images/k8s.png)
 
+**TIPS**：如果在Kubernetes部署的过程中出现问题，可以通过docker desktop应用日志获得实时日志信息：
+
+```bash
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
+```
 
 ### Docker Desktop for Windows 开启 Kubernetes
 
@@ -70,13 +77,7 @@
 
 ![k8s](images/k8s_win.png)
 
-**TIPS**：如果想知道Kubernetes部署的过程，可以通过docker desktop应用日志获得实时安装进程信息：
-
-```bash
-pred='process matches ".*(ocker|vpnkit).*"
-  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
-/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
-```
+**TIPS**：如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志
 
 
 
