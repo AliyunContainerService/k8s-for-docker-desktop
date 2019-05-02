@@ -1,17 +1,23 @@
-# 为中国用户在 Docker for Mac/Windows 中开启 Kubernetes 
+# Docker Desktop for Mac/Windows 开启 Kubernetes
 
 中文 | [English](README_en.md)
 
 说明: 
 
-* 需安装 Docker for Mac或者Docker for Windows，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
+* 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
 * 当前 master 分支已经在 Docker for Mac/Windows 2.0.4.x (包含 Docker CE 19.03.0 和 Kubernetes 1.14.1) 版本测试通过
   * 如果你希望使用 Docker for Mac/Windows 2.0.1.x/2.0.2.x/2.0.3.x (包含 Docker CE 18.09.1 和 Kubernetes 1.13.0) , 请使用下面命令切换 [v2.0.1.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.1.0) ```git checkout v2.0.1.0```
   * 如果你希望使用 Docker for Mac/Windows 2.0.0.2/2.0.0.3 (包含 Docker CE 18.09.1 和 Kubernetes 1.10.11) , 请使用下面命令切换 [v2.0.0.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.0.2) ```git checkout v2.0.0.2```
   * 如果你希望使用 18.09/18.06 版本(包含 Kubernetes 1.10.3) , 请使用下面命令切换 [18.09 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/18.09) ```git checkout 18.09```
   * 如果你希望使用 18.03 版本, 请使用下面命令切换 [18.03 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/18.03) ```git checkout 18.03```
 
-### Docker for Mac 开启 Kubernetes
+
+
+查看 Docker Desktop版本，Docker -> About  Docker Desktop
+![about](images/about.png)
+
+
+### Docker Desktop for Mac 开启 Kubernetes
 
 为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
@@ -34,7 +40,7 @@
 ![k8s](images/k8s.png)
 
 
-### Docker for Windows 开启 Kubernetes
+### Docker Desktop for Windows 开启 Kubernetes
 
 为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
 
