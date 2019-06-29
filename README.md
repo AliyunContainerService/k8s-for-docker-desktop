@@ -6,7 +6,7 @@
 
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
 * 当前 master 分支已经在 Docker for Mac/Windows 2.0.5.x (包含 Docker CE 19.03.0 和 Kubernetes 1.14.3) 版本测试通过
-  * 如果你希望使用 Docker for Mac/Windows 2.0.1.x/2.0.2.x/2.0.3.x (包含 Docker CE 18.09.1 和 Kubernetes 1.14.1) , 请使用下面命令切换 [v1.14.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.1) ```git checkout v1.14.1```
+  * 如果你希望使用 Docker for Mac/Windows 2.0.4.x (包含 Docker CE 18.09.1 和 Kubernetes 1.14.1) , 请使用下面命令切换 [v1.14.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.1) ```git checkout v1.14.1```
   * 如果你希望使用 Docker for Mac/Windows 2.0.1.x/2.0.2.x/2.0.3.x (包含 Docker CE 18.09.1 和 Kubernetes 1.13.0) , 请使用下面命令切换 [v2.0.1.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.1.0) ```git checkout v2.0.1.0```
   * 如果你希望使用 Docker for Mac/Windows 2.0.0.2/2.0.0.3 (包含 Docker CE 18.09.1 和 Kubernetes 1.10.11) , 请使用下面命令切换 [v2.0.0.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.0.2) ```git checkout v2.0.0.2```
   * 如果你希望使用 18.09/18.06 版本(包含 Kubernetes 1.10.3) , 请使用下面命令切换 [18.09 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/18.09) ```git checkout 18.09```
@@ -20,7 +20,7 @@
 
 ### Docker Desktop for Mac 开启 Kubernetes
 
-为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
+为 Docker daemon 配置镜像加速，参考[阿里云镜像服务](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors) 或中科大镜像加速地址```https://docker.mirrors.ustc.edu.cn```
 
 ![mirror](images/mirror.png)
 
@@ -50,7 +50,7 @@ pred='process matches ".*(ocker|vpnkit).*"
 
 ### Docker Desktop for Windows 开启 Kubernetes
 
-为 Docker daemon 配置 Docker Hub 的中国官方镜像加速 ```https://registry.docker-cn.com```
+为 Docker daemon 配置镜像加速，参考[阿里云镜像服务](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors) 或使用中科大镜像加速地址 ```https://docker.mirrors.ustc.edu.cn```
 
 ![mirror](images/mirror_win.png)
 
@@ -78,7 +78,10 @@ pred='process matches ".*(ocker|vpnkit).*"
 
 ![k8s](images/k8s_win.png)
 
-**TIPS**：如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志
+**TIPS**：
+
+* 如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志
+* 如果看到 Kubernetes一直在启动状态，请参考 [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) 和 [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
 
 

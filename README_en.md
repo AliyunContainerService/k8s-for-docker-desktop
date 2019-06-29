@@ -4,9 +4,10 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1). 
-  * If you want to use v2.0.1.0/v2.0.2.0/v2.0.3.0 (with Docker CE 18.09.1 and Kubernetes 1.13.0), please use the 18.09 branch ```git checkout v2.0.0.2```
-  * If you want to use v2.0.0.2/v2.0.0.3 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the 18.09 branch ```git checkout v2.0.0.2```
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.0.5.x (with Docker CE 19.03.0 and Kubernetes 1.14.3). 
+  * If you want to use 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1), please use the v1.14.1 ```git checkout v1.14.1``
+  * If you want to use v2.0.1.0/v2.0.2.0/v2.0.3.0 (with Docker CE 18.09.1 and Kubernetes 1.13.0), please use the v2.0.1.0 branch ```git checkout v2.0.0.2```
+  * If you want to use v2.0.0.2/v2.0.0.3 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the v2.0.0.2 branch ```git checkout v2.0.0.2```
   * If you want to use Docker CE 18.09/18.06 (with Kubernetes 1.10.3), please use the 18.09 branch ```git checkout 18.09```
   * If you want to use Docker CE 18.03, please use the 18.03 branch ```git checkout 18.03```
 
@@ -17,7 +18,7 @@ Check version of Docker Desktop，Docker -> About  Docker Desktop
 
 ### Enable Kubernetes on Docker Desktop for Mac
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com``` only if in China
+Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
 
 ![mirror](images/mirror.png)
 
@@ -40,7 +41,7 @@ Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
 
 ### Enable Kubernetes on Docker Desktop for Windows
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
+Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
 
 ![mirror](images/mirror_win.png)
 
