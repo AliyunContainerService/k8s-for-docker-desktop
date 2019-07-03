@@ -54,7 +54,7 @@ pred='process matches ".*(ocker|vpnkit).*"
 
 ![mirror](images/mirror_win.png)
 
-可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。 
+可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。
 
 ![resource](images/resource_win.png)
 
@@ -226,11 +226,11 @@ Error: incompatible versions client[v2.13.1] server[v2.12.2]
 # Use homebrew on Mac
 brew install kubernetes-helm
 
+# Install Tiller into your Kubernetes cluster
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
-
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
 
 # Update charts repo (Optional)
 helm repo update
@@ -240,7 +240,7 @@ helm repo update
 
 ```
 # Download binary release
-在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.2-darwin-amd64.tar.gz
+在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-darwin-amd64.tar.gz
 
 # Unpack
 
@@ -261,11 +261,11 @@ mv darwin-amd64/helm /usr/local/bin/helm
 # 注：安装的时候需要保证网络能够访问googleapis这个域名
 choco install kubernetes-helm
 
+# Install Tiller into your Kubernetes cluster
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
-
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
 
 # Update charts repo (Optional)
 helm repo update
@@ -281,8 +281,8 @@ helm repo update
 #### 下载 Istio 1.1.1 并安装 CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.1.1/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.2 sh -
+cd istio-1.2.2/
 export PATH=$PWD/bin:$PATH
 ```
 
@@ -300,7 +300,7 @@ export PATH=$PWD/bin:$PATH
 # 安装 istio-init chart 安装所有的 Istio CRD
 helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 
-# 验证下安装的 Istio CRD 个数
+# 验证下安装的 Istio CRD 个数, 应该安装23个CRD
 kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
 
 # 开始 istio chart 安装

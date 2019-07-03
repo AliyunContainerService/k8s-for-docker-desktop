@@ -5,7 +5,7 @@
 NOTE: 
 
 * The master branch is tested with Docker Desktop for Mac/Windows version 2.0.5.x (with Docker CE 19.03.0 and Kubernetes 1.14.3). 
-  * If you want to use 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1), please use the v1.14.1 ```git checkout v1.14.1``
+  * If you want to use 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1), please use the v1.14.1 ```git checkout v1.14.1```
   * If you want to use v2.0.1.0/v2.0.2.0/v2.0.3.0 (with Docker CE 18.09.1 and Kubernetes 1.13.0), please use the v2.0.1.0 branch ```git checkout v2.0.0.2```
   * If you want to use v2.0.0.2/v2.0.0.3 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the v2.0.0.2 branch ```git checkout v2.0.0.2```
   * If you want to use Docker CE 18.09/18.06 (with Kubernetes 1.10.3), please use the 18.09 branch ```git checkout 18.09```
@@ -149,7 +149,7 @@ Install helm following the instruction on https://github.com/helm/helm/blob/mast
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
 
 # update charts repo (Optional)
 helm repo update
@@ -163,7 +163,7 @@ helm repo update
 choco install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
 
 # update charts repo (Optional)
 helm repo update
@@ -173,11 +173,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.1.1 and install CLI
+Download Istio 1.2.2 and install CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.1.1/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.2 sh -
+cd istio-1.2.2/
 export PATH=$PWD/bin:$PATH
 ```
 
