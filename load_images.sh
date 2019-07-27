@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 file="images.properties"
 
@@ -17,3 +17,4 @@ then
 else
   echo "$file not found."
 fi
+
