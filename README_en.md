@@ -173,11 +173,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.2.2 and install CLI
+Download Istio 1.2.4 and install CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.2 sh -
-cd istio-1.2.2/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
+cd istio-1.2.4/
 export PATH=$PWD/bin:$PATH
 ```
 
