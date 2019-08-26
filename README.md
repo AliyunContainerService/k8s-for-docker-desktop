@@ -162,7 +162,7 @@ Win: %UserProfile%\.kube\config
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
 ```
 
 验证
@@ -203,7 +203,7 @@ kubectl delete -f sample/ingress.yaml
 #### 删除 Ingress
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
 ```
 
@@ -278,11 +278,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.1.1 并安装 CLI
+#### 下载 Istio 1.2.4 并安装 CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.2 sh -
-cd istio-1.2.2/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
+cd istio-1.2.4/
 export PATH=$PWD/bin:$PATH
 ```
 
