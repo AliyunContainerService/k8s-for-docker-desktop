@@ -5,7 +5,8 @@
 说明: 
 
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
-* 当前 master 分支已经在 Docker for Mac/Windows 2.1.2.x (包含 Docker CE 19.03.2 和 Kubernetes 1.14.6) 版本测试通过
+* 当前 master 分支已经在 Docker for Mac/Windows 2.1.4.x (包含 Docker CE 19.03.3 和 Kubernetes 1.15.4) 版本测试通过
+  * 如果你希望使用 Docker for Mac/Windows 2.1.3.x (包含 Docker CE 19.03.2 和 Kubernetes 1.14.6) , 请使用下面命令切换 [v1.14.6 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.6) ```git checkout v1.14.6```
   * 如果你希望使用 Docker for Mac/Windows 2.1.1.x (包含 Docker CE 19.03.0 和 Kubernetes 1.14.3) , 请使用下面命令切换 [v1.14.3 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.3) ```git checkout v1.14.3```
   * 如果你希望使用 Docker for Mac/Windows 2.0.4.x (包含 Docker CE 18.09.1 和 Kubernetes 1.14.1) , 请使用下面命令切换 [v1.14.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.1) ```git checkout v1.14.1```
   * 如果你希望使用 Docker for Mac/Windows 2.0.1.x/2.0.2.x/2.0.3.x (包含 Docker CE 18.09.1 和 Kubernetes 1.13.0) , 请使用下面命令切换 [v2.0.1.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.1.0) ```git checkout v2.0.1.0```
@@ -228,7 +229,7 @@ Error: incompatible versions client[v2.13.1] server[v2.12.2]
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.3 --skip-refresh
 
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
@@ -241,7 +242,7 @@ helm repo update
 
 ```
 # Download binary release
-在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-darwin-amd64.tar.gz
+在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-darwin-amd64.tar.gz
 
 # Unpack
 
@@ -279,11 +280,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.2.4 并安装 CLI
+#### 下载 Istio 1.3.3 并安装 CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
-cd istio-1.2.4/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
+cd istio-1.3.3/
 export PATH=$PWD/bin:$PATH
 ```
 
