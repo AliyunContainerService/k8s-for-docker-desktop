@@ -244,7 +244,7 @@ Error: incompatible versions client[v2.13.1] server[v2.12.2]
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.3 --skip-refresh
 
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
@@ -257,7 +257,7 @@ helm repo update
 
 ```
 # Download binary release
-在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-darwin-amd64.tar.gz
+在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-darwin-amd64.tar.gz
 
 # Unpack
 
@@ -295,11 +295,11 @@ helm repo update
 
 可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
 
-#### 下载 Istio 1.2.4 并安装 CLI
+#### 下载 Istio 1.3.3 并安装 CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
-cd istio-1.2.4/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
+cd istio-1.3.3/
 export PATH=$PWD/bin:$PATH
 ```
 

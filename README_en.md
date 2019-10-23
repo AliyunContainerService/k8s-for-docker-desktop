@@ -151,7 +151,7 @@ Install helm following the instruction on https://github.com/helm/helm/blob/mast
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.3 --skip-refresh
 
 # update charts repo (Optional)
 helm repo update
@@ -175,11 +175,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.2.4 and install CLI
+Download Istio 1.3.3 and install CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
-cd istio-1.2.4/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
+cd istio-1.3.3/
 export PATH=$PWD/bin:$PATH
 ```
 
