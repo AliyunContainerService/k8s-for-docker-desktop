@@ -5,7 +5,8 @@
 说明: 
 
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
-* 当前 master 分支已经在 Docker for Mac/Windows 2.1.2.x (包含 Docker CE 19.03.2 和 Kubernetes 1.14.6) 版本测试通过
+* 当前 v1.14.7 分支已经在 Docker for Mac/Windows 2.1.0.x (包含 Docker CE 19.03.4 和 Kubernetes 1.14.7) 版本测试通过
+  * 如果你希望使用 Docker for Mac/Windows 2.1.3.x (包含 Docker CE 19.03.2 和 Kubernetes 1.14.6) , 请使用下面命令切换 [v1.14.6 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.6) ```git checkout v1.14.6```
   * 如果你希望使用 Docker for Mac/Windows 2.1.1.x (包含 Docker CE 19.03.0 和 Kubernetes 1.14.3) , 请使用下面命令切换 [v1.14.3 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.3) ```git checkout v1.14.3```
   * 如果你希望使用 Docker for Mac/Windows 2.0.4.x (包含 Docker CE 18.09.1 和 Kubernetes 1.14.1) , 请使用下面命令切换 [v1.14.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.1) ```git checkout v1.14.1```
   * 如果你希望使用 Docker for Mac/Windows 2.0.1.x/2.0.2.x/2.0.3.x (包含 Docker CE 18.09.1 和 Kubernetes 1.13.0) , 请使用下面命令切换 [v2.0.1.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v2.0.1.0) ```git checkout v2.0.1.0```
@@ -135,12 +136,27 @@ TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print 
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
 
+docker-ce 18.09 及以上版本
+
+```shell
+TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
+```
+
 对于Windows环境
 
 ```shell
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```
+
+docker-ce 18.09 及以上版本
+
+```shell
+$TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
+```
+
 
 #### 登录dashboard的时候选择 kubeconfig 文件
 
