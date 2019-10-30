@@ -4,8 +4,8 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.1.4.x (with Docker CE 19.03.3 and Kubernetes 1.15.4). 
-  * If you want to use 2.1.3.x (with Docker CE 19.03.2 and Kubernetes 1.14.6), please use the v1.14.6 ```git checkout v1.14.6```
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.1.2.x (with Docker CE 19.03.2 and Kubernetes 1.14.6). 
+  * If you want to use 2.1.1.x (with Docker CE 19.03.0 and Kubernetes 1.14.6), please use the v1.14.3 ```git checkout v1.14.6```
   * If you want to use 2.1.1.x (with Docker CE 19.03.0 and Kubernetes 1.14.3), please use the v1.14.3 ```git checkout v1.14.3```
   * If you want to use 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1), please use the v1.14.1 ```git checkout v1.14.1```
   * If you want to use v2.0.1.0/v2.0.2.0/v2.0.3.0 (with Docker CE 18.09.1 and Kubernetes 1.13.0), please use the v2.0.1.0 branch ```git checkout v2.0.0.2```
@@ -151,7 +151,7 @@ Install helm following the instruction on https://github.com/helm/helm/blob/mast
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.3 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.1 --skip-refresh
 
 # update charts repo (Optional)
 helm repo update
@@ -165,7 +165,7 @@ helm repo update
 choco install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.1 --skip-refresh
 
 # update charts repo (Optional)
 helm repo update
@@ -175,11 +175,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/kubernetes/
 
-Download Istio 1.3.3 and install CLI
+Download Istio 1.2.4 and install CLI
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
-cd istio-1.3.3/
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.2.4 sh -
+cd istio-1.2.4/
 export PATH=$PWD/bin:$PATH
 ```
 
