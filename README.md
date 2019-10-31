@@ -223,7 +223,7 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mas
 brew install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
 
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
@@ -243,11 +243,11 @@ Error: incompatible versions client[v2.13.1] server[v2.12.2]
 
 ```
 # Download binary release
-在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-darwin-amd64.tar.gz
+在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.15.2-darwin-amd64.tar.gz
 
 # Unpack
 
-tar -zxvf helm-v2.15.1-linux-amd64.tgz
+tar -zxvf helm-v2.15.2-linux-amd64.tgz
 
 # Move it to its desired destination
 
@@ -265,7 +265,7 @@ mv darwin-amd64/helm /usr/local/bin/helm
 choco install kubernetes-helm
 
 # Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.1 --skip-refresh
+helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
 
 # Change helm repo
 helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
