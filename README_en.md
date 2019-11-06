@@ -4,7 +4,8 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.1.2.x (with Docker CE 19.03.2 and Kubernetes 1.14.6). 
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.1.5.0 Edge (with Docker CE 19.03.4 and Kubernetes 1.15.5). 
+  * If you want to use 2.1.4.x (with Docker CE 19.03.2 and Kubernetes 1.15.4), please use the v1.15.4 ```git checkout v1.15.4```
   * If you want to use 2.1.1.x (with Docker CE 19.03.0 and Kubernetes 1.14.6), please use the v1.14.3 ```git checkout v1.14.6```
   * If you want to use 2.1.1.x (with Docker CE 19.03.0 and Kubernetes 1.14.3), please use the v1.14.3 ```git checkout v1.14.3```
   * If you want to use 2.0.4.x (with Docker CE 19.03.0 and Kubernetes 1.14.1), please use the v1.14.1 ```git checkout v1.14.1```
@@ -75,7 +76,7 @@ Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is runn
 ### Config Kubernetes
 
 
-Optional: switch the context to `docker-for-desktop` (under docker ce 18.09, the conext is `docker-desktop`)
+Optional: switch the context to `docker-desktop` (under docker ce 18.09, the conext is `docker-desktop`)
 
 
 ```shell

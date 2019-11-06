@@ -5,7 +5,8 @@
 说明: 
 
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
-* 当前 master 分支已经在 Docker for Mac/Windows 2.1.4.x (包含 Docker CE 19.03.3 和 Kubernetes 1.15.4) 版本测试通过
+* 当前 master 分支已经在 Docker for Mac/Windows 2.1.5.0 Edge (包含 Docker CE 19.03.4 和 Kubernetes 1.15.5) 版本测试通过
+  * 如果你希望使用 Docker for Mac/Windows 2.1.3.x (包含 Docker CE 19.03.3 和 Kubernetes 1.15.4) , 请使用下面命令切换 [v1.15.4 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.15.4) ```git checkout v1.15.4```
   * 如果你希望使用 Docker for Mac/Windows 2.1.3.x (包含 Docker CE 19.03.2 和 Kubernetes 1.14.6) , 请使用下面命令切换 [v1.14.6 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.6) ```git checkout v1.14.6```
   * 如果你希望使用 Docker for Mac/Windows 2.1.1.x (包含 Docker CE 19.03.0 和 Kubernetes 1.14.3) , 请使用下面命令切换 [v1.14.3 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.3) ```git checkout v1.14.3```
   * 如果你希望使用 Docker for Mac/Windows 2.0.4.x (包含 Docker CE 18.09.1 和 Kubernetes 1.14.1) , 请使用下面命令切换 [v1.14.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.14.1) ```git checkout v1.14.1```
@@ -90,7 +91,7 @@ pred='process matches ".*(ocker|vpnkit).*"
 ### 配置 Kubernetes
 
 
-可选操作: 切换Kubernetes运行上下文至 docker-for-desktop (docker-ce 18.09 下 context 为 docker-desktop)
+可选操作: 切换Kubernetes运行上下文至 docker-desktop (docker-ce 18.09 下 context 为 docker-desktop)
 
 
 ```shell
