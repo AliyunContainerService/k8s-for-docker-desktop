@@ -90,11 +90,11 @@ pred='process matches ".*(ocker|vpnkit).*"
 ### 配置 Kubernetes
 
 
-可选操作: 切换Kubernetes运行上下文至 docker-desktop (docker-ce 18.09 下 context 为 docker-desktop)
+可选操作: 切换Kubernetes运行上下文至 docker-desktop (之前版本的 context 为 docker-for-desktop)
 
 
 ```shell
-kubectl config use-context docker-for-desktop
+kubectl config use-context docker-desktop
 ```
 
 验证 Kubernetes 集群状态
@@ -104,7 +104,9 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-部署 Kubernetes dashboard
+### 配置 Kubernetes 控制台
+
+#### 部署 Kubernetes dashboard
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -126,14 +128,14 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-### 配置 kubeconfig (可跳过)
-
+#### 配置控制台访问令牌
 
 对于Mac环境
 
 ```shell
 TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
 对于Windows环境
@@ -141,13 +143,18 @@ kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 ```shell
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
-#### 登录dashboard的时候选择 kubeconfig 文件
+#### 登录dashboard的时候
 
 ![resource](images/k8s_credentials.png)
 
-选择 kubeconfig 文件,路径如下：
+选择 **令牌** 
+
+输入上文控制台输出的内容
+
+或者选择 **Kubeconfig** 文件,路径如下：
 
 ```
 Mac: $HOME/.kube/config

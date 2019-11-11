@@ -73,11 +73,11 @@ Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is runn
 ### Config Kubernetes
 
 
-Optional: switch the context to `docker-desktop` (under docker ce 18.09, the conext is `docker-desktop`)
+Optional: switch the context to `docker-desktop` (In the former version, the context is `docker-for-desktop`)
 
 
 ```shell
-kubectl config use-context docker-for-desktop
+kubectl config use-context docker-desktop
 ```
 
 Verify Kubernetes installation
@@ -87,7 +87,10 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-Deploy Kubernetes dashboard
+
+### Deploy Kubernetes dashboard
+
+#### Install Kubernetes dashboard
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -105,17 +108,18 @@ Start proxy for API server
 kubectl proxy
 ```
 
-Access Kubernetes dashboard
+#### Access Kubernetes dashboard
 
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
-#### Config kubeconfig (Or skip)
+#### Config Token for dashboard
 
 For Mac
 
 ```bash
 TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
 For Windows
@@ -123,13 +127,16 @@ For Windows
 ```cmd
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
-#### Choose kubeconfig file (Optional)
+#### Login dashboard
 
 ![resource](images/k8s_credentials.png)
 
-Choose kubeconfig file, Path：
+Choose **Token**, and input the output from above result
+
+Or, choose **Kubeconfig**, select file from below path：
 
 ```
 Win: %UserProfile%\.kube\config
