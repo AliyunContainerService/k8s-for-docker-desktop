@@ -176,63 +176,105 @@ helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tille
 helm repo update
 ```
 
-### Install Istio
+### Setup Istio
 
-More details can be found in https://istio.io/docs/setup/kubernetes/
+More details can be found in https://istio.io/docs/setup/getting-started/
 
-Download Istio 1.3.3 and install CLI
+#### Download Istio 1.4.0 and install CLI
 
-```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
-cd istio-1.3.3/
+```shell
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.4.0 sh -
+cd istio-1.4.0/
 export PATH=$PWD/bin:$PATH
 ```
 
-Install Istio with Helm chart
+In Windows, you can download the Istio manually, or copy ```getLatestIstio.ps1``` to your Istio directory, and execute the script. 
+
+NOTE: It refer the [scripts](https://gist.github.com/kameshsampath/796060a806da15b39aa9569c8f8e6bcf) from community.
+
+```powershell
+.\getLatestIstio.ps1
+```
+
+#### Install Istio
 
 ```shell
-# Install the istio-init chart to bootstrap all the Istio’s CRDs
-helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
-
-# Verify that all Istio CRDs were committed to the Kubernetes api-server
-kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
-
-# Install the istio chart
-helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+istioctl manifest apply --set profile=demo
 ```
 
 Check status of istio release
 
 ```shell
-helm status istio
+kubectl get pods -n istio-system
 ```
 
-Enable automatic sidecar injection for ```default``` namespace
+#### Enable automatic sidecar injection for ```default``` namespace
 
 ```shell
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
-Install Book Info sample
+#### Install Book Info sample
+
+Please refer https://istio.io/docs/examples/bookinfo/
 
 ```shell
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+```
+
+Check the resources of sample application
+
+```shell
+kubectl get svc,pod
+```
+
+Confirm the application is running
+
+```shell
+kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+```
+
+Create Ingress Gateway
+
+```shell
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
+
+Check Gateway status
+
+```shell
+kubectl get gateway
+```
+
+Confirm the application is accessible
+
+```shell
+export GATEWAY_URL=localhost:80
+curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"
+```
+
+Open with browser http://localhost/productpage
 
 
-Confirm application is running
+#### Confirm application is running
 
-​```bash
+```shell
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
 
-Delete Istio
+#### Cleanup sample application 
 
 ```shell
-helm del --purge istio
-kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
+samples/bookinfo/platform/kube/cleanup.sh
 ```
+
+#### Delete Istio
+
+```shell
+istioctl manifest generate --set profile=demo | kubectl delete -f -
+```
+
 
 

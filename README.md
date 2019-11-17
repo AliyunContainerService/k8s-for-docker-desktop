@@ -286,13 +286,13 @@ helm repo update
 
 说明：Istio Ingress Gateway和Ingress缺省的端口冲突，请移除Ingress并进行下面测试
 
-可以根据文档安装 Istio https://istio.io/docs/setup/kubernetes/
+可以根据文档安装 Istio https://istio.io/docs/setup/getting-started/
 
-#### 下载 Istio 1.3.3 并安装 CLI
+#### 下载 Istio 1.4.0
 
 ```bash
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
-cd istio-1.3.3/
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.4.0 sh -
+cd istio-1.4.0
 export PATH=$PWD/bin:$PATH
 ```
 
@@ -304,23 +304,16 @@ export PATH=$PWD/bin:$PATH
 
 
 
-#### 通过 Helm chart 安装 Istio
+#### 安装 Istio
 
 ```shell
-# 安装 istio-init chart 安装所有的 Istio CRD
-  helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
-
-# 验证下安装的 Istio CRD 个数, 应该安装23个CRD
-kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
-
-# 开始 istio chart 安装
-helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+istioctl manifest apply --set profile=demo
 ```
 
-#### 查看 istio 发布状态
+#### 检查 Istio 状态
 
 ```shell
-helm status istio
+kubectl get pods -n istio-system
 ```
 
 #### 为 ```default``` 名空间开启自动 sidecar 注入
@@ -332,41 +325,46 @@ kubectl get namespace -L istio-injection
 
 #### 安装 Book Info 示例
 
+请参考 https://istio.io/docs/examples/bookinfo/
+
 ```shell
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
-kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 ```
 
+查看示例应用资源
+
+```shell
+kubectl get svc,pod
+```
 
 确认示例应用在运行中
 
-```bash
+```shell
+kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+```
+
+创建 Ingress Gateway
+
+```shell
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
+
+查看 Gateway 配置
+
+```shell
+kubectl get gateway
+```
+
+确认示例应用可以访问
+
+```shell
 export GATEWAY_URL=localhost:80
-curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
+curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"
 ```
 
 可以通过浏览器访问
 
 http://localhost/productpage
-
-
-说明：如果当前80端口已经被占用或保留，我们可以编辑 ```install/kubernetes/helm/istio/values.yaml``` 文件中
-Gateway 端口进行调整，比如将 80 端口替换为 8888 端口
-
-```
-      ## You can add custom gateway ports
-    - port: 8888  # Changed from 80
-      targetPort: 80
-      name: http2
-      nodePort: 31380
-```
-
-然后执行如下命令并生效
-
-```shell
-kubectl delete service istio-ingressgateway -n istio-system
-helm upgrade istio install/kubernetes/helm/istio
-```
 
 #### 删除实例应用
 
@@ -377,8 +375,7 @@ samples/bookinfo/platform/kube/cleanup.sh
 ### 卸载 Istio
 
 ```shell
-helm del --purge istio
-kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
+istioctl manifest generate --set profile=demo | kubectl delete -f -
 ```
 
 
