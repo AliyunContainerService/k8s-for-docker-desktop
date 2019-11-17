@@ -147,18 +147,18 @@ Click login, go to Kubernetes Dashboard
 
 ### Install Helm
 
-Install helm following the instruction on https://github.com/helm/helm/blob/master/docs/install.md
+Install helm following the instruction on https://helm.sh/docs/intro/install/
 
 #### For Mac OS
 
 ```shell
 # Use homebrew on Mac
-brew install kubernetes-helm
+brew install helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
+# add helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# update charts repo (Optional)
+# update charts repo
 helm repo update
 ```
 
@@ -169,10 +169,10 @@ helm repo update
 # NOTE: please ensure you can access googleapis
 choco install kubernetes-helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
+# add helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# update charts repo (Optional)
+# update charts repo
 helm repo update
 ```
 

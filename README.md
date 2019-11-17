@@ -218,48 +218,21 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mas
 
 ### 安装 Helm
 
-可以根据文档安装 helm https://github.com/helm/helm/blob/master/docs/install.md
+可以根据文档安装 helm v3 https://helm.sh/docs/intro/install/
 
 #### 在 Mac OS 上安装
 
 ##### 通过 brew 安装
 
-
 ```shell
 # Use homebrew on Mac
-brew install kubernetes-helm
+brew install helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
+# Add helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# Change helm repo
-helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
-
-# Update charts repo (Optional)
+# Update charts repo
 helm repo update
-```
-
-注：brew 安装的版本可能会和 helm server 不兼容, 如果在后续使用 helm 安装组件的过程中出现以下错误，可以 `通过二进制包安装` 对应的版本
-
-```
-$ helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
-Error: incompatible versions client[v2.13.1] server[v2.12.2]
-```
-
-##### 通过二进制包安装
-
-```
-# Download binary release
-在 https://github.com/helm/helm/releases 中找到匹配的版本并下载(需要梯子), 如: https://storage.googleapis.com/kubernetes-helm/helm-v2.15.2-darwin-amd64.tar.gz
-
-# Unpack
-
-tar -zxvf helm-v2.15.2-linux-amd64.tgz
-
-# Move it to its desired destination
-
-mv darwin-amd64/helm /usr/local/bin/helm
-
 ```
 
 #### 在Windows上安装
@@ -271,16 +244,32 @@ mv darwin-amd64/helm /usr/local/bin/helm
 # 注：安装的时候需要保证网络能够访问googleapis这个域名
 choco install kubernetes-helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.15.2 --skip-refresh
-
 # Change helm repo
-helm repo add stable http://mirror.azure.cn/kubernetes/charts-incubator/
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# Update charts repo (Optional)
+# Update charts repo
 helm repo update
 ```
 
+#### 测试 Helm (可选)
+
+安装 Wordpress
+
+```shell
+helm install wordpress stable/wordpress
+```
+
+查看 wordpress 发布状态
+
+```shell
+helm install wordpress stable/wordpress
+```
+
+卸载 wordpress 发布
+
+```shell
+helm uninstall wordpress
+```
 
 ### 配置 Istio
 
@@ -301,8 +290,6 @@ export PATH=$PWD/bin:$PATH
 ```powershell
 .\getLatestIstio.ps1
 ```
-
-
 
 #### 安装 Istio
 
@@ -368,7 +355,7 @@ http://localhost/productpage
 
 #### 删除实例应用
 
-```bash
+```shell
 samples/bookinfo/platform/kube/cleanup.sh
 ```
 
