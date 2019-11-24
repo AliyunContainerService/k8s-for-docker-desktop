@@ -20,7 +20,7 @@
 
 
 
-### Docker Desktop for Mac 开启 Kubernetes
+### 开启 Kubernetes
 
 为 Docker daemon 配置镜像加速，参考[阿里云镜像服务](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors) 或中科大镜像加速地址```https://docker.mirrors.ustc.edu.cn```
 
@@ -33,16 +33,31 @@
 预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
 
 
+在 Mac 上执行如下脚本
+
 ```bash
 ./load_images.sh
 ```
 
+
+在Windows上，使用 PowerShell
+
+```powershell
+ .\load_images.ps1
+```
+
+说明: 如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 ```Set-ExecutionPolicy RemoteSigned``` 命令。 
 开启 Kubernetes，并等待 Kubernetes 开始运行
 
 
+开启 Kubernetes，并等待 Kubernetes 开始运行
 ![k8s](images/k8s.png)
 
-**TIPS**：如果在Kubernetes部署的过程中出现问题，可以通过docker desktop应用日志获得实时日志信息：
+**TIPS**：
+
+在Mac上:
+
+如果在Kubernetes部署的过程中出现问题，可以通过docker desktop应用日志获得实时日志信息：
 
 ```bash
 pred='process matches ".*(ocker|vpnkit).*"
@@ -50,42 +65,10 @@ pred='process matches ".*(ocker|vpnkit).*"
 /usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
 ```
 
-### Docker Desktop for Windows 开启 Kubernetes
+在Windows上:
 
-为 Docker daemon 配置镜像加速，参考[阿里云镜像服务](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors) 或使用中科大镜像加速地址 ```https://docker.mirrors.ustc.edu.cn```
-
-![mirror](images/mirror_win.png)
-
-可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。
-
-![resource](images/resource_win.png)
-
-预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
-
-使用 Bash shell
-
-```bash
-./load_images.sh
-```
-
-使用 PowerShell
-
-```powershell
- .\load_images.ps1
-```
-
-说明: 如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 ```Set-ExecutionPolicy RemoteSigned``` 命令。 
-
-开启 Kubernetes，并等待 Kubernetes 开始运行
-
-![k8s](images/k8s_win.png)
-
-**TIPS**：
-
-* 如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志
-* 如果看到 Kubernetes一直在启动状态，请参考 [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) 和 [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
-
-
+如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志; 
+如果看到 Kubernetes一直在启动状态，请参考 [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) 和 [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
 ### 配置 Kubernetes
 

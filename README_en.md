@@ -16,7 +16,7 @@ NOTE:
     * For Kubernetes v1.10.11, please use the v1.10.11 branch ```git checkout v1.10.11```
 
 
-### Enable Kubernetes on Docker Desktop for Mac
+### Enable Kubernetes on Docker Desktop
 
 Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
 
@@ -28,36 +28,13 @@ Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
+On Mac, execute the following scripts
 
 ```bash
 ./load_images.sh
 ```
 
-Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
-
-
-![k8s](images/k8s.png)
-
-
-### Enable Kubernetes on Docker Desktop for Windows
-
-Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
-
-![mirror](images/mirror_win.png)
-
-Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
-
-![resource](images/resource_win.png)
-
-Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
-
-In Bash shell
-
-```bash
-./load_images.sh
-```
-
-or in PowerShell of Windows
+Or on Windows, execute the following scripts in PowerShell
 
 ```powershell
  .\load_images.ps1
@@ -65,9 +42,10 @@ or in PowerShell of Windows
 
 NOTE: if you failed to start PowerShell scripts for security policy, please execute ```Set-ExecutionPolicy RemoteSigned``` command in PowerShell with "Run as administrator" option. 
 
-Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is running
 
-![k8s](images/k8s_win.png)
+Enable Kubernetes, and wait a while for Kubernetes is running
+
+![k8s](images/k8s.png)
 
 
 ### Config Kubernetes
