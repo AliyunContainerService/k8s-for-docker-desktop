@@ -8,6 +8,7 @@ NOTE:
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
     * For Kubernetes v1.15.4, please use the v1.15.4 branch ```git checkout v1.15.4```
+    * For Kubernetes v1.14.8, please use the v1.14.7 branch ```git checkout v1.14.8```
     * For Kubernetes v1.14.7, please use the v1.14.7 branch ```git checkout v1.14.7```
     * For Kubernetes v1.14.6, please use the v1.14.6 branch ```git checkout v1.14.6```
     * For Kubernetes v1.14.3, please use the v1.14.3 branch ```git checkout v1.14.3```
