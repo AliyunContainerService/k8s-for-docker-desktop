@@ -4,9 +4,10 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.1.5.0 Edge (with Docker CE 19.03.4 and Kubernetes 1.15.5). 
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.2.2.0 Edge (with Docker CE 19.03.5 and Kubernetes 1.16.5). 
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
+    * For Kubernetes v1.15.5, please use the v1.15.5 branch ```git checkout v1.15.5```
     * For Kubernetes v1.15.4, please use the v1.15.4 branch ```git checkout v1.15.4```
     * For Kubernetes v1.14.8, please use the v1.14.8 branch ```git checkout v1.14.8```
     * For Kubernetes v1.14.7, please use the v1.14.7 branch ```git checkout v1.14.7```
