@@ -73,13 +73,19 @@ kubectl get nodes
 #### Install Kubernetes dashboard
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
 ```
 
 or
 
 ```shell
 kubectl create -f kubernetes-dashboard.yaml
+```
+
+Check Kubernetes Dashboard status
+
+```shell
+kubectl get pod -n kubernetes-dashboard
 ```
 
 Start proxy for API server
@@ -90,7 +96,7 @@ kubectl proxy
 
 #### Access Kubernetes dashboard
 
-http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 #### Config Token for dashboard
 
@@ -160,11 +166,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/getting-started/
 
-#### Download Istio 1.4.0 and install CLI
+#### Download Istio 1.5.0 and install CLI
 
 ```shell
-curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.4.0 sh -
-cd istio-1.4.0/
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
+cd istio-1.5.0/
 export PATH=$PWD/bin:$PATH
 ```
 

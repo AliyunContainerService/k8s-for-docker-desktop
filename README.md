@@ -94,13 +94,19 @@ kubectl get nodes
 #### 部署 Kubernetes dashboard
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
 ```
 
 或
 
 ```shell
 kubectl create -f kubernetes-dashboard.yaml
+```
+
+检查 kubernetes-dashboard 应用状态
+
+```shell
+kubectl get pod -n kubernetes-dashboard
 ```
 
 开启 API Server 访问代理
@@ -111,7 +117,7 @@ kubectl proxy
 
 通过如下 URL 访问 Kubernetes dashboard
 
-http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 #### 配置控制台访问令牌
 
@@ -262,11 +268,11 @@ helm uninstall wordpress
 
 可以根据文档安装 Istio https://istio.io/docs/setup/getting-started/
 
-#### 下载 Istio 1.4.0
+#### 下载 Istio 1.5.0
 
 ```bash
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.4.0 sh -
-cd istio-1.4.0
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
+cd istio-1.5.0
 export PATH=$PWD/bin:$PATH
 ```
 
