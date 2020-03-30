@@ -1,17 +1,26 @@
-# Enable Kubernetes on Docker for Mac/Windows in China
+# Enable Kubernetes on Docker Desktop for Mac/Windows in China
 
 [中文](README.md) | English
 
 NOTE: 
 
-* The master branch is tested with Docker for Mac/Windows version 2.0.1.x (with Docker 18.09.1 and Kubernetes 1.13.0). 
-  * If you want to use v2.0.0.2/v2.0.0.3 (with Docker CE 18.09.1 and Kubernetes 1.10.11), please use the 18.09 branch ```git checkout v2.0.0.2```
-  * If you want to use Docker CE 18.09/18.06 (with Kubernetes 1.10.3), please use the 18.09 branch ```git checkout 18.09```
-  * If you want to use Docker CE 18.03, please use the 18.03 branch ```git checkout 18.03```
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.2.2.0 Edge (with Docker CE 19.03.5 and Kubernetes 1.16.5). 
+* If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
+    ![about](images/about.png)
+    * For Kubernetes v1.15.5, please use the v1.15.5 branch ```git checkout v1.15.5```
+    * For Kubernetes v1.15.4, please use the v1.15.4 branch ```git checkout v1.15.4```
+    * For Kubernetes v1.14.8, please use the v1.14.8 branch ```git checkout v1.14.8```
+    * For Kubernetes v1.14.7, please use the v1.14.7 branch ```git checkout v1.14.7```
+    * For Kubernetes v1.14.6, please use the v1.14.6 branch ```git checkout v1.14.6```
+    * For Kubernetes v1.14.3, please use the v1.14.3 branch ```git checkout v1.14.3```
+    * For Kubernetes v1.14.1, please use the v1.14.1 branch ```git checkout v1.14.1```
+    * For Kubernetes v1.13.0, please use the v1.13.0 branch ```git checkout v1.13.0```
+    * For Kubernetes v1.10.11, please use the v1.10.11 branch ```git checkout v1.10.11```
 
-### Enable Kubernetes on Docker for Mac
 
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com``` only if in China
+### Enable Kubernetes on Docker Desktop
+
+Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
 
 ![mirror](images/mirror.png)
 
@@ -21,36 +30,13 @@ Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested
 
 Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
 
+On Mac, execute the following scripts
 
 ```bash
 ./load_images.sh
 ```
 
-Enable Kubernetes in Docker for Mac, and wait a while for Kubernetes is running
-
-
-![k8s](images/k8s.png)
-
-
-### Enable Kubernetes on Docker for Windows
-
-Config registry mirror for Docker daemon with ```https://registry.docker-cn.com```
-
-![mirror](images/mirror_win.png)
-
-Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
-
-![resource](images/resource_win.png)
-
-Preload Kubernetes images form Alibaba Cloud Registry Service, NOTE: you can modify the ```images.properties``` for your own images
-
-In Bash shell
-
-```bash
-./load_images.sh
-```
-
-or in PowerShell of Windows
+Or on Windows, execute the following scripts in PowerShell
 
 ```powershell
  .\load_images.ps1
@@ -58,19 +44,20 @@ or in PowerShell of Windows
 
 NOTE: if you failed to start PowerShell scripts for security policy, please execute ```Set-ExecutionPolicy RemoteSigned``` command in PowerShell with "Run as administrator" option. 
 
-Enable Kubernetes in Docker for Windows, and wait a while for Kubernetes is running
 
-![k8s](images/k8s_win.png)
+Enable Kubernetes, and wait a while for Kubernetes is running
+
+![k8s](images/k8s.png)
 
 
 ### Config Kubernetes
 
 
-Optional: switch the context to `docker-for-desktop` (under docker ce 18.09, the conext is `docker-desktop`)
+Optional: switch the context to `docker-desktop` (In the former version, the context is `docker-for-desktop`)
 
 
 ```shell
-kubectl config use-context docker-for-desktop
+kubectl config use-context docker-desktop
 ```
 
 Verify Kubernetes installation
@@ -80,10 +67,13 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-Deploy Kubernetes dashboard
+
+### Deploy Kubernetes dashboard
+
+#### Install Kubernetes dashboard
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
 ```
 
 or
@@ -92,23 +82,30 @@ or
 kubectl create -f kubernetes-dashboard.yaml
 ```
 
+Check Kubernetes Dashboard status
+
+```shell
+kubectl get pod -n kubernetes-dashboard
+```
+
 Start proxy for API server
 
 ```shell
 kubectl proxy
 ```
 
-Access Kubernetes dashboard
+#### Access Kubernetes dashboard
 
-http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-#### Config kubeconfig (Or skip)
+#### Config Token for dashboard
 
 For Mac
 
 ```bash
 TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
 For Windows
@@ -116,13 +113,16 @@ For Windows
 ```cmd
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+echo $TOKEN
 ```
 
-#### Choose kubeconfig file (Optional)
+#### Login dashboard
 
 ![resource](images/k8s_credentials.png)
 
-Choose kubeconfig file, Path：
+Choose **Token**, and input the output from above result
+
+Or, choose **Kubeconfig**, select file from below path：
 
 ```
 Win: %UserProfile%\.kube\config
@@ -133,18 +133,18 @@ Click login, go to Kubernetes Dashboard
 
 ### Install Helm
 
-Install helm following the instruction on https://github.com/helm/helm/blob/master/docs/install.md
+Install helm following the instruction on https://helm.sh/docs/intro/install/
 
 #### For Mac OS
 
 ```shell
 # Use homebrew on Mac
-brew install kubernetes-helm
+brew install helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
+# add helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# update charts repo (Optional)
+# update charts repo
 helm repo update
 ```
 
@@ -155,70 +155,112 @@ helm repo update
 # NOTE: please ensure you can access googleapis
 choco install kubernetes-helm
 
-# Install Tiller into your Kubernetes cluster
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.12.2 --skip-refresh
+# add helm repo
+helm repo add stable http://mirror.azure.cn/kubernetes/charts/
 
-# update charts repo (Optional)
+# update charts repo
 helm repo update
 ```
 
-### Install Istio
+### Setup Istio
 
-More details can be found in https://istio.io/docs/setup/kubernetes/
+More details can be found in https://istio.io/docs/setup/getting-started/
 
-Download Istio 1.1.1 and install CLI
+#### Download Istio 1.5.0 and install CLI
 
-```bash
-curl -L https://git.io/getLatestIstio | sh -
-cd istio-1.1.1/
+```shell
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
+cd istio-1.5.0/
 export PATH=$PWD/bin:$PATH
 ```
 
-Install Istio with Helm chart
+In Windows, you can download the Istio manually, or copy ```getLatestIstio.ps1``` to your Istio directory, and execute the script. 
+
+NOTE: It refer the [scripts](https://gist.github.com/kameshsampath/796060a806da15b39aa9569c8f8e6bcf) from community.
+
+```powershell
+.\getLatestIstio.ps1
+```
+
+#### Install Istio
 
 ```shell
-# Install the istio-init chart to bootstrap all the Istio’s CRDs
-helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
-
-# Verify that all Istio CRDs were committed to the Kubernetes api-server
-kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
-
-# Install the istio chart
-helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+istioctl manifest apply --set profile=demo
 ```
 
 Check status of istio release
 
 ```shell
-helm status istio
+kubectl get pods -n istio-system
 ```
 
-Enable automatic sidecar injection for ```default``` namespace
+#### Enable automatic sidecar injection for ```default``` namespace
 
 ```shell
 kubectl label namespace default istio-injection=enabled
 kubectl get namespace -L istio-injection
 ```
 
-Install Book Info sample
+#### Install Book Info sample
+
+Please refer https://istio.io/docs/examples/bookinfo/
 
 ```shell
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+```
+
+Check the resources of sample application
+
+```shell
+kubectl get svc,pod
+```
+
+Confirm the application is running
+
+```shell
+kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+```
+
+Create Ingress Gateway
+
+```shell
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
+
+Check Gateway status
+
+```shell
+kubectl get gateway
+```
+
+Confirm the application is accessible
+
+```shell
+export GATEWAY_URL=localhost:80
+curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"
+```
+
+Open with browser http://localhost/productpage
 
 
-Confirm application is running
+#### Confirm application is running
 
-​```bash
+```shell
 export GATEWAY_URL=localhost:80
 curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 ```
 
-Delete Istio
+#### Cleanup sample application 
 
 ```shell
-helm del --purge istio
-kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
+samples/bookinfo/platform/kube/cleanup.sh
 ```
+
+#### Delete Istio
+
+```shell
+istioctl manifest generate --set profile=demo | kubectl delete -f -
+```
+
 
 
