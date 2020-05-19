@@ -32,8 +32,7 @@
 
 ![resource](images/resource.png)
 
-预先从阿里云Docker镜像服务下载 Kubernetes 所需要的镜像, 可以通过修改 ```images.properties``` 文件加载你自己需要的镜像
-
+从阿里云镜像服务下载 Kubernetes 所需要的镜像
 
 在 Mac 上执行如下脚本
 
@@ -48,8 +47,9 @@
  .\load_images.ps1
 ```
 
-说明: 如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 ```Set-ExecutionPolicy RemoteSigned``` 命令。 
-开启 Kubernetes，并等待 Kubernetes 开始运行
+说明: 
+* 如果因为安全策略无法执行 PowerShell 脚本，请在 “以管理员身份运行” 的 PowerShell 中执行 ```Set-ExecutionPolicy RemoteSigned``` 命令。 
+* 如果需要，可以通过修改 ```images.properties``` 文件自行加载你自己需要的镜像
 
 
 开启 Kubernetes，并等待 Kubernetes 开始运行
