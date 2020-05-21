@@ -160,10 +160,9 @@ Win: %UserProfile%\.kube\config
 
 #### 安装 Ingress
 
-源地址安装说明
+[源地址安装说明](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md)
 ```
 - 若安装脚本无法安装，可以跳转到该地址查看最新操作
-https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
 ```
 
 安装
