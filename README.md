@@ -257,7 +257,7 @@ helm install wordpress stable/wordpress
 查看 wordpress 发布状态
 
 ```shell
-helm install wordpress stable/wordpress
+helm status wordpress
 ```
 
 卸载 wordpress 发布
