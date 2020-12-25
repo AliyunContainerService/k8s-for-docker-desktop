@@ -1,0 +1,10 @@
+language: python
+
+arch:
+  - arm64
+
+services:
+  - docker
+
+script:
+  - ./sync_images.sh
