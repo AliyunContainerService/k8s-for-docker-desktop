@@ -4,9 +4,13 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.2.2.0 Edge (with Docker CE 19.03.5 and Kubernetes 1.16.5). 
+* The master branch is tested with Docker Desktop for Mac/Windows version 2.5.0.0 Edge (with Docker CE 20.10.0 and Kubernetes 1.19.3). 
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
+    * For Kubernetes v1.18.8, please use the v1.18.8 branch ```git checkout v1.18.8```
+    * For Kubernetes v1.18.6, please use the v1.18.6 branch ```git checkout v1.18.6```
+    * For Kubernetes v1.18.3, please use the v1.18.3 branch ```git checkout v1.18.3```
+    * For Kubernetes v1.16.5, please use the v1.16.5 branch ```git checkout v1.16.5```
     * For Kubernetes v1.15.5, please use the v1.15.5 branch ```git checkout v1.15.5```
     * For Kubernetes v1.15.4, please use the v1.15.4 branch ```git checkout v1.15.4```
     * For Kubernetes v1.14.8, please use the v1.14.8 branch ```git checkout v1.14.8```
@@ -73,7 +77,7 @@ kubectl get nodes
 #### Install Kubernetes dashboard
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
 ```
 
 or
