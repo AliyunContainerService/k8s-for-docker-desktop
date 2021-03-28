@@ -76,7 +76,16 @@ pred='process matches ".*(ocker|vpnkit).*"
 在Windows上:
 
 如果在Kubernetes部署的过程中出现问题，可以在 C:\ProgramData\DockerDesktop下的service.txt 查看Docker日志; 
-如果看到 Kubernetes一直在启动状态，请参考 [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) 和 [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
+
+
+**问题诊断**：
+
+如果看到 Kubernetes一直在启动状态，请参考 
+
+* [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) 或 [Issue 3649(comment)](https://github.com/docker/for-mac/issues/3649#issuecomment-497441158)
+  * 在macOS上面，执行 ```rm -fr '~/Library/Group\ Containers/group.com.docker/pki'```
+  * 在Windows上面删除 'C:\ProgramData\DockerDesktop\pki' 目录
+* [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
 ### 配置 Kubernetes
 
