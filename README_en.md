@@ -55,6 +55,31 @@ Enable Kubernetes, and wait a while for Kubernetes is running
 
 ![k8s](images/k8s.png)
 
+**TIPS**：
+
+On Mac:
+
+If facing problems when deploy Kubernetes, you can check ocker desktop application's log to get realtime log：
+
+```bash
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
+```
+
+On Windows:
+
+If facing problems when deploy Kubernetes, you can check docker log in C:\ProgramData\DockerDesktop\service.txt, check Kuberneteslog in C:\Users\yourUserName\AppData\Local\Docker\log.txt
+
+
+**problem diagnosis**：
+
+If you see Kubernetes stuck in Starting, please refer: 
+
+* [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) or [Issue 3649(comment)](https://github.com/docker/for-mac/issues/3649#issuecomment-497441158)
+  * On MacOS, execute ```rm -fr '~/Library/Group\ Containers/group.com.docker/pki'```
+  * On Windows, delete folders 'C:\ProgramData\DockerDesktop\pki' and 'C:\Users\yourUserName\AppData\Local\Docker\pki'
+* [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
 ### Config Kubernetes
 
