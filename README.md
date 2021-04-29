@@ -229,6 +229,7 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 ### 安装 Helm
 
 可以根据文档安装 helm v3 https://helm.sh/docs/intro/install/
+在国内由于helm的cdn节点使用的是谷歌云所以可能访问不到，可以参考已存在的官方issue： https://github.com/helm/helm/issues/7028
 
 #### 在 Mac OS 上安装
 
