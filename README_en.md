@@ -4,9 +4,12 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 2.3.6.0 Edge (with Docker CE 19.03.13 and Kubernetes 1.18.8). 
+* The master branch is tested with Docker Desktop for Mac/Windows version 3.1.0 (with Docker CE 20.10.3 and Kubernetes 1.19.7). 
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
+    * For Kubernetes v1.19.3, please use the v1.19.3 branch ```git checkout v1.19.3```
+    * For Kubernetes v1.19.2, please use the v1.19.2 branch ```git checkout v1.19.2```
+    * For Kubernetes v1.18.8, please use the v1.18.8 branch ```git checkout v1.18.8```
     * For Kubernetes v1.18.6, please use the v1.18.6 branch ```git checkout v1.18.6```
     * For Kubernetes v1.18.3, please use the v1.18.3 branch ```git checkout v1.18.3```
     * For Kubernetes v1.16.5, please use the v1.16.5 branch ```git checkout v1.16.5```
@@ -52,6 +55,31 @@ Enable Kubernetes, and wait a while for Kubernetes is running
 
 ![k8s](images/k8s.png)
 
+**TIPS**：
+
+On Mac:
+
+If facing problems when deploy Kubernetes, you can check ocker desktop application's log to get realtime log：
+
+```bash
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+/usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
+```
+
+On Windows:
+
+If facing problems when deploy Kubernetes, you can check docker log in C:\ProgramData\DockerDesktop\service.txt, check Kuberneteslog in C:\Users\yourUserName\AppData\Local\Docker\log.txt
+
+
+**problem diagnosis**：
+
+If you see Kubernetes stuck in Starting, please refer: 
+
+* [Issue 3769(comment)](https://github.com/docker/for-win/issues/3769#issuecomment-486046718) or [Issue 3649(comment)](https://github.com/docker/for-mac/issues/3649#issuecomment-497441158)
+  * On MacOS, execute ```rm -fr '~/Library/Group\ Containers/group.com.docker/pki'```
+  * On Windows, delete folders 'C:\ProgramData\DockerDesktop\pki' and 'C:\Users\yourUserName\AppData\Local\Docker\pki'
+* [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
 ### Config Kubernetes
 
