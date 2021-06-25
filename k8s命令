@@ -1,0 +1,8 @@
+K8S进入容器方法
+前言
+    k8s如何进入一个pod里有多个容器的方法
+方法1
+      kubectl --namespace=kube-system exec -it kube-dns-1336009800-15b1h --container nginx -- sh
+或
+      kubectl --namespace=kube-system exec -it kube-dns-1336009800-15b1h  -c  nginx -- sh
+注释：--namespace 为命名空间kube-dns为pod的名字，-c或-container为Pod里其中的一个容器名字
