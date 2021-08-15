@@ -4,9 +4,11 @@
 
 NOTE: 
 
-* The master branch is tested with Docker Desktop for Mac/Windows version 3.5.2 (with Docker CE 20.10.7 and Kubernetes 1.21.2). 
+* The master branch is tested with Docker Desktop for Mac/Windows version 3.6.0 (with Docker CE 20.10.8 and Kubernetes 1.21.3). 
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
+    * For Kubernetes v1.21.1, please use the v1.21.1 branch ```git checkout v1.21.3```
+    * For Kubernetes v1.21.1, please use the v1.21.1 branch ```git checkout v1.21.2```
     * For Kubernetes v1.21.1, please use the v1.21.1 branch ```git checkout v1.21.1```
     * For Kubernetes v1.19.3, please use the v1.19.3 branch ```git checkout v1.19.3```
     * For Kubernetes v1.19.2, please use the v1.19.2 branch ```git checkout v1.19.2```
