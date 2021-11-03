@@ -114,7 +114,7 @@ kubectl get nodes
 #### 部署 Kubernetes dashboard
 
 ```shell
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
 ```
 
 或
