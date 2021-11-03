@@ -140,7 +140,7 @@ For Mac
 
 ```bash
 TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
 echo $TOKEN
 ```
 
@@ -148,7 +148,7 @@ For Windows
 
 ```cmd
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
 echo $TOKEN
 ```
 
