@@ -146,7 +146,7 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 ```shell
 TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
 echo $TOKEN
 ```
 
@@ -154,7 +154,7 @@ echo $TOKEN
 
 ```shell
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
 echo $TOKEN
 ```
 
