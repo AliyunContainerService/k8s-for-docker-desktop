@@ -188,7 +188,7 @@ Win: %UserProfile%\.kube\config
 
 安装
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-1.0.4/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
 ```
 
 验证
@@ -229,7 +229,7 @@ kubectl delete -f sample/ingress.yaml
 #### 删除 Ingress
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-1.0.4/deploy/static/provider/cloud/deploy.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ### 安装 Helm
