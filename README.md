@@ -3,7 +3,7 @@
 中文 | [English](README_en.md)
 
 说明: 
-
+* **Docker Desktop 4.9.1, Kubernetes 版本为v1.24.0， 经测试不需要再通过脚本的方式下载了，并且也不需要配置registry-mirrors选项了，直接在官网下载开启k8s，等待片刻(依据网速而定),通过docker images 查看下载的镜像，系统自动下载12个镜像 就会开启k8s啦, happying container development!!!**
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
 * 当前 master 分支已经在 Docker for Mac/Windows 4.8.0 (包含 Docker CE 20.10.14 和 Kubernetes 1.24.0) 版本测试通过
 * 如果需要测试其他版本，请查看 Docker Desktop版本，Docker -> About Docker Desktop
