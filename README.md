@@ -4,10 +4,13 @@
 
 说明: 
 
+* 近期从 k8s.gcr.io 拉取镜像的成功率高了很多，如果您通过如下命令 ```docker pull k8s.gcr.io/pause:3.8 ``` 测试镜像拉取成功，本项目相关部分可以直接跳过。
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
-* 当前 master 分支已经在 Docker for Mac/Windows 4.8.0 (包含 Docker CE 20.10.14 和 Kubernetes 1.24.0) 版本测试通过
+* 当前 master 分支已经在 Docker for Mac/Windows 4.12.0 (包含 Docker CE 20.10.17 和 Kubernetes 1.25.0) 版本测试通过
 * 如果需要测试其他版本，请查看 Docker Desktop版本，Docker -> About Docker Desktop
   ![about](images/about.png)
+  * 如Kubernetes版本为 v1.25.0, 请使用下面命令切换 [v1.24.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.25.0) ```git checkout v1.25.0```
+  * 如Kubernetes版本为 v1.24.2, 请使用下面命令切换 [v1.24.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.24.2) ```git checkout v1.24.2```
   * 如Kubernetes版本为 v1.24.0, 请使用下面命令切换 [v1.24.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.24.0) ```git checkout v1.24.0```
   * 如Kubernetes版本为 v1.23.4, 请使用下面命令切换 [v1.23.4 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.23.4) ```git checkout v1.23.4```
   * 如Kubernetes版本为 v1.22.5, 请使用下面命令切换 [v1.22.5 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.22.5) ```git checkout v1.22.5```
