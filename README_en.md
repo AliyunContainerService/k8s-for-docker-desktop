@@ -7,6 +7,7 @@ NOTE:
 * The master branch is tested with Docker Desktop for Mac/Windows version 4.13.1 (with Docker CE 20.10.20 and Kubernetes 1.25.2). 
 * If you want to use with other version, pls check version of Kubernetes，Docker -> About Docker Desktop
     ![about](images/about.png)
+    * For Kubernetes v1.25.2, please use the v1.25.4 branch ```git checkout v1.25.4```
     * For Kubernetes v1.25.2, please use the v1.25.2 branch ```git checkout v1.25.2```
     * For Kubernetes v1.25.0, please use the v1.25.0 branch ```git checkout v1.25.0```
     * For Kubernetes v1.24.2, please use the v1.24.2 branch ```git checkout v1.24.2```
@@ -116,7 +117,7 @@ kubectl get nodes
 #### Install Kubernetes dashboard
 
 ```shell
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```
 
 or
@@ -193,7 +194,7 @@ Note: If you are testing Istio, donot need to install Ingress
 
 Install
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
 ```
 Or
 
@@ -277,11 +278,11 @@ helm repo update
 
 More details can be found in https://istio.io/docs/setup/getting-started/
 
-#### Download Istio 1.5.0 and install CLI
+#### Download Istio 1.6.2 and install CLI
 
 ```shell
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
-cd istio-1.5.0/
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.2 sh -
+cd istio-1.6.2/
 export PATH=$PWD/bin:$PATH
 ```
 

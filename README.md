@@ -9,6 +9,7 @@
 * 当前 master 分支已经在 Docker for Mac/Windows 4.13.1 (包含 Docker CE 20.10.20 和 Kubernetes 1.25.2) 版本测试通过
 * 如果需要测试其他版本，请查看 Docker Desktop版本，Docker -> About Docker Desktop
   ![about](images/about.png)
+  * 如Kubernetes版本为 v1.25.4, 请使用下面命令切换 [v1.25.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.25.4) ```git checkout v1.25.4```
   * 如Kubernetes版本为 v1.25.2, 请使用下面命令切换 [v1.25.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.25.2) ```git checkout v1.25.2```
   * 如Kubernetes版本为 v1.25.0, 请使用下面命令切换 [v1.25.0 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.25.0) ```git checkout v1.25.0```
   * 如Kubernetes版本为 v1.24.2, 请使用下面命令切换 [v1.24.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.24.2) ```git checkout v1.24.2```
@@ -122,7 +123,7 @@ kubectl get nodes
 #### 部署 Kubernetes dashboard
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```
 
 或
@@ -201,7 +202,7 @@ Win: %UserProfile%\.kube\config
 
 安装
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
 或
@@ -313,11 +314,11 @@ helm uninstall wordpress
 
 可以根据文档安装 Istio https://istio.io/docs/setup/getting-started/
 
-#### 下载 Istio 1.5.0
+#### 下载 Istio 1.16.2
 
 ```bash
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
-cd istio-1.5.0
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.16.2 sh -
+cd istio-1.16.2
 export PATH=$PWD/bin:$PATH
 ```
 
