@@ -189,6 +189,12 @@ Win: %UserProfile%\.kube\config
 
 点击登陆，进入Kubernetes Dashboard
 
+#### 部署 Kubernetes metrics server (可选)
+
+```shell
+kubectl apply -f kubernetes-metrics-server.yaml
+```
+
 ### 配置 Ingress
 
 说明：如果测试 Istio，不需要安装 Ingress

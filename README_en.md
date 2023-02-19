@@ -181,6 +181,12 @@ Mac: $HOME/.kube/config
 
 Click login, go to Kubernetes Dashboard
 
+#### Install Kubernetes metrics server (Optional)
+
+```shell
+kubectl apply -f kubernetes-metrics-server.yaml
+```
+
 ### Config Ingress
 
 Note: If you are testing Istio, donot need to install Ingress
