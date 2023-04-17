@@ -252,6 +252,12 @@ kubectl delete -f sample/ingress.yaml
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
+或
+
+```shell
+kubectl delete -f ingress-nginx-controller.yaml
+```
+
 ### 安装 Helm
 
 可以根据文档安装 helm v3 https://helm.sh/docs/intro/install/
