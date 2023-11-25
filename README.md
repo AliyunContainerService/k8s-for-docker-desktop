@@ -108,6 +108,25 @@ pred='process matches ".*(ocker|vpnkit).*"
   * 在Windows上面删除 'C:\ProgramData\DockerDesktop\pki' 目录 和 'C:\Users\yourUserName\AppData\Local\Docker\pki' 目录
 * [Issue 1962(comment)](https://github.com/docker/for-win/issues/1962#issuecomment-431091114)
 
+
+
+**K8S进入容器方法**
+
+K8s如何进入一个pod里有多个容器的方法
+
+```
+kubectl --namespace=kube-system exec -it kube-dns-1336009800-15b1h --container nginx -- sh
+```
+
+或
+
+```
+kubectl --namespace=kube-system exec -it kube-dns-1336009800-15b1h  -c  nginx -- sh
+```
+
+注释：--namespace 为命名空间kube-dns为pod的名字，-c或-container为Pod里其中的一个容器名字
+
+
 ### 配置 Kubernetes
 
 
@@ -203,20 +222,6 @@ Win: %UserProfile%\.kube\config
 #### 安装 Ingress
 
 [源地址安装说明](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md)
-```
-- 若安装脚本无法安装，可以跳转到该地址查看最新操作
-```
-
-安装
-```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
-```
-
-或
-
-```shell
-kubectl apply -f ingress-nginx-controller.yaml
-```
 
 验证
 
