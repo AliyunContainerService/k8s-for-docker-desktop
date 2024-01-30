@@ -7,12 +7,14 @@
 , 开启云上云原生实践之旅。
 https://free.aliyun.com/?product=9596839
 
+
 说明: 
 
 * 需安装 Docker Desktop 的 Mac 或者 Windows 版本，如果没有请下载[下载 Docker CE最新版本](https://store.docker.com/search?type=edition&offering=community)
-* 当前 master 分支已经在 Docker for Mac/Windows 4.25.2 (包含 Docker CE 24.0.6 和 Kubernetes 1.28.2) 版本测试通过
+* 当前 master 分支已经在 Docker for Mac/Windows 4.27.0 (包含 Docker 25.0.1 和 Kubernetes v1.29.1) 版本测试通过
 * 如果需要测试其他版本，请查看 Docker Desktop版本，Docker -> About Docker Desktop
   ![about](images/about.png)
+  * 如Kubernetes版本为 v1.29.1, 请使用下面命令切换 [v1.29.1 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.29.1) ```git checkout v1.29.1```
   * 如Kubernetes版本为 v1.28.2, 请使用下面命令切换 [v1.28.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.28.2) ```git checkout v1.28.2```
   * 如Kubernetes版本为 v1.27.2, 请使用下面命令切换 [v1.27.2 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.27.2) ```git checkout v1.27.2```
   * 如Kubernetes版本为 v1.25.9, 请使用下面命令切换 [v1.25.9 分支](https://github.com/AliyunContainerService/k8s-for-docker-desktop/tree/v1.25.9) ```git checkout v1.25.9```
