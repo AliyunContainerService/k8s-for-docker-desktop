@@ -338,13 +338,17 @@ helm uninstall wordpress
 
 可以根据文档安装 Istio https://istio.io/docs/setup/getting-started/
 
-#### 下载 Istio 1.5.0
+#### 下载 Istio
+
+例如下载Istio版本1.22.1（其他更新版本可以自行替换）, 执行如下命令：
 
 ```bash
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.5.0 sh -
-cd istio-1.5.0
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.22.1 sh -
+cd istio-1.22.1
 export PATH=$PWD/bin:$PATH
 ```
+
+注意： Windows环境未经严格测试。
 
 在Windows上，您可以手工下载Istio安装包，或者把```getLatestIstio.ps1```拷贝到你希望下载 Istio 的目录，并执行 - 说明：根据社区提供的[安装脚本](https://gist.github.com/kameshsampath/796060a806da15b39aa9569c8f8e6bcf)修改而来
 
@@ -355,7 +359,7 @@ export PATH=$PWD/bin:$PATH
 #### 安装 Istio
 
 ```shell
-istioctl manifest apply --set profile=demo
+istioctl install --set profile=demo -y
 ```
 
 #### 检查 Istio 状态
