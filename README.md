@@ -3,9 +3,7 @@
 中文 | [English](README_en.md)
 
 
-欢迎体验阿里云容器服务 Kubernetes Serverless版 （ASK）免费试用计划
-, 开启云上云原生实践之旅。
-https://free.aliyun.com/?product=9596839
+欢迎体验阿里云容器服务 阿里云容器计算服务 ACS （Alibaba Cloud Container Compute Service，ACS）, 开启云上Kubernetes实践之旅。https://www.aliyun.com/product/acs
 
 
 说明: 
