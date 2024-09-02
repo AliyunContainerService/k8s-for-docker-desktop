@@ -22,11 +22,7 @@ NOTE:
 
 ### Enable Kubernetes on Docker Desktop
 
-Config registry mirror for Docker daemon with ```https://docker.mirrors.ustc.edu.cn``` only if in China
-
-![mirror](images/mirror.png)
-
-Optional: config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
+Config the CPU and memory for Kubernetes, 4GB RAM or more is suggested. 
 
 ![resource](images/resource.png)
 

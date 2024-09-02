@@ -31,11 +31,7 @@
 
 ### 开启 Kubernetes
 
-为 Docker daemon 配置镜像加速，参考[阿里云镜像服务](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors) 或中科大镜像加速地址```https://docker.mirrors.ustc.edu.cn```
-
-![mirror](images/mirror.png)
-
-可选操作: 为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。 
+为 Kubernetes 配置 CPU 和 内存资源，建议分配 4GB 或更多内存。 
 
 ![resource](images/resource.png)
 
@@ -46,7 +42,6 @@
 ```bash
 ./load_images.sh
 ```
-
 
 在Windows上，使用 PowerShell
 
