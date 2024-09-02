@@ -17,30 +17,7 @@ NOTE:
     * For Kubernetes v1.25.2, please use the v1.25.2 branch ```git checkout v1.25.2```
     * For Kubernetes v1.25.0, please use the v1.25.0 branch ```git checkout v1.25.0```
     * For Kubernetes v1.24.2, please use the v1.24.2 branch ```git checkout v1.24.2```
-    * For Kubernetes v1.24.0, please use the v1.24.0 branch ```git checkout v1.24.0```
-    * For Kubernetes v1.23.4, please use the v1.23.4 branch ```git checkout v1.23.4```
-    * For Kubernetes v1.22.5, please use the v1.22.5 branch ```git checkout v1.22.5```
-    * For Kubernetes v1.22.4, please use the v1.22.4 branch ```git checkout v1.22.4```
-    * For Kubernetes v1.21.4, please use the v1.21.1 branch ```git checkout v1.21.5```
-    * For Kubernetes v1.21.4, please use the v1.21.1 branch ```git checkout v1.21.4```
-    * For Kubernetes v1.21.3, please use the v1.21.1 branch ```git checkout v1.21.3```
-    * For Kubernetes v1.21.2, please use the v1.21.1 branch ```git checkout v1.21.2```
-    * For Kubernetes v1.21.1, please use the v1.21.1 branch ```git checkout v1.21.1```
-    * For Kubernetes v1.19.3, please use the v1.19.3 branch ```git checkout v1.19.3```
-    * For Kubernetes v1.19.2, please use the v1.19.2 branch ```git checkout v1.19.2```
-    * For Kubernetes v1.18.8, please use the v1.18.8 branch ```git checkout v1.18.8```
-    * For Kubernetes v1.18.6, please use the v1.18.6 branch ```git checkout v1.18.6```
-    * For Kubernetes v1.18.3, please use the v1.18.3 branch ```git checkout v1.18.3```
-    * For Kubernetes v1.16.5, please use the v1.16.5 branch ```git checkout v1.16.5```
-    * For Kubernetes v1.15.5, please use the v1.15.5 branch ```git checkout v1.15.5```
-    * For Kubernetes v1.15.4, please use the v1.15.4 branch ```git checkout v1.15.4```
-    * For Kubernetes v1.14.8, please use the v1.14.8 branch ```git checkout v1.14.8```
-    * For Kubernetes v1.14.7, please use the v1.14.7 branch ```git checkout v1.14.7```
-    * For Kubernetes v1.14.6, please use the v1.14.6 branch ```git checkout v1.14.6```
-    * For Kubernetes v1.14.3, please use the v1.14.3 branch ```git checkout v1.14.3```
-    * For Kubernetes v1.14.1, please use the v1.14.1 branch ```git checkout v1.14.1```
-    * For Kubernetes v1.13.0, please use the v1.13.0 branch ```git checkout v1.13.0```
-    * For Kubernetes v1.10.11, please use the v1.10.11 branch ```git checkout v1.10.11```
+    
 
 
 ### Enable Kubernetes on Docker Desktop
