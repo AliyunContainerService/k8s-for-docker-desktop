@@ -166,9 +166,11 @@ kubectl apply -f kube-system-default.yaml
 对于Mac环境
 
 ```shell
-TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
-kubectl config set-credentials docker-desktop --token="${TOKEN}"
-echo $TOKEN
+kubectl apply -f mac/sa.yaml,mac/crb.yaml
+#TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+#kubectl config set-credentials docker-desktop --token="${TOKEN}"
+#echo $TOKEN
+kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 ```
 
 对于Windows环境
